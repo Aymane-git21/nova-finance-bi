@@ -1,0 +1,79 @@
+[
+ {
+  "id": "(none)",
+  "name": "Not programme-related",
+  "actual": 139197613.54,
+  "budget": 283755652.92,
+  "variance": -144558039.38000003
+ },
+ {
+  "id": "PRG-KESTREL",
+  "name": "Kestrel Launcher Development",
+  "actual": 103235415.98,
+  "budget": 144880427.88,
+  "variance": -41645011.89999999
+ },
+ {
+  "id": "PRG-HELIOS",
+  "name": "Helios-3 Earth Observation Constellation",
+  "actual": 68559756.12,
+  "budget": 140221702.2,
+  "variance": -71661946.07999998
+ },
+ {
+  "id": "PRG-BOREAS",
+  "name": "Boreas Polar Weather Satellite",
+  "actual": 45013356.88,
+  "budget": 91183474.92,
+  "variance": -46170118.04
+ },
+ {
+  "id": "PRG-AURORA",
+  "name": "Aurora Deep-Space Relay",
+  "actual": 39167587.5,
+  "budget": 79244704.68,
+  "variance": -40077117.18000001
+ },
+ {
+  "id": "PRG-LYRA",
+  "name": "Lyra Constellation Operations",
+  "actual": 29930983.64,
+  "budget": 60158078.16,
+  "variance": -30227094.519999996
+ },
+ {
+  "id": "PRG-MERIDIAN",
+  "name": "Meridian Navigation Payload",
+  "actual": 28061582.79,
+  "budget": 55590662.16,
+  "variance": -27529079.369999997
+ },
+ {
+  "id": "PRG-TERRA",
+  "name": "TerraScan Ground Segment",
+  "actual": 19340637.9,
+  "budget": 38839171.32,
+  "variance": -19498533.42
+ },
+ {
+  "id": "PRG-CASTOR",
+  "name": "Castor Smallsat Platform",
+  "actual": 18123677.37,
+  "budget": 38355749.64,
+  "variance": -20232072.27
+ },
+ {
+  "id": "PRG-VESTA",
+  "name": "Vesta Propulsion Test Bench",
+  "actual": 9011716.14,
+  "budget": 18345134.28,
+  "variance": -9333418.14
+ },
+ {
+  "id": "PRG-PHAROS",
+  "name": "Pharos Optical Comms Demonstrator",
+  "actual": -1623.42,
+  "budget": 4652128.2,
+  "variance": -4653751.62
+ }
+]

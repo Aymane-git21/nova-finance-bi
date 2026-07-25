@@ -1,0 +1,30 @@
+[
+ {
+  "entity": "NS30",
+  "entityName": "NovaSpace Deutschland GmbH",
+  "avgDaysToClose": 8.17,
+  "avgManualShare": 0.2316,
+  "avgLateShare": 0.0915
+ },
+ {
+  "entity": "NS20",
+  "entityName": "NovaSpace France S.A.S.",
+  "avgDaysToClose": 5.36,
+  "avgManualShare": 0.1454,
+  "avgLateShare": 0.0223
+ },
+ {
+  "entity": "NS10",
+  "entityName": "NovaSpace Espa\u00f1a S.A.",
+  "avgDaysToClose": 5.31,
+  "avgManualShare": 0.1415,
+  "avgLateShare": 0.0219
+ },
+ {
+  "entity": "NS40",
+  "entityName": "NovaSpace UK Ltd.",
+  "avgDaysToClose": 5.14,
+  "avgManualShare": 0.1411,
+  "avgLateShare": 0.0208
+ }
+]

@@ -1,0 +1,13 @@
+{
+ "generatedAt": "2026-07-25 20:43 UTC",
+ "groupAvgDaysToClose": 6.0,
+ "slowestEntity": "NS30",
+ "slowestEntityDays": 8.17,
+ "groupManualShare": 0.1645,
+ "programmesOverBudget": 1,
+ "programmeCount": 10,
+ "worstProgramme": "Kestrel Launcher Development",
+ "worstProgrammeEac": 1.2663,
+ "openIcItems": 5,
+ "openPeriods": 1
+}

@@ -1,0 +1,51 @@
+{
+  "_version": "1.60.0",
+  "sap.app": {
+    "id": "novaspace.cockpit",
+    "type": "application",
+    "title": "NovaSpace Finance Cockpit",
+    "description": "Month-end close and programme controlling for NovaSpace Group",
+    "applicationVersion": { "version": "1.0.0" },
+    "dataSources": {
+      "analytics": {
+        "uri": "/analytics/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0",
+          "localUri": "localData/metadata.xml"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": { "desktop": true, "tablet": true, "phone": true }
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "novaspace.cockpit.view.Dashboard",
+      "type": "XML",
+      "async": true,
+      "id": "dashboard"
+    },
+    "dependencies": {
+      "minUI5Version": "1.120.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {},
+        "sap.viz": {}
+      }
+    },
+    "contentDensities": { "compact": true, "cozy": true },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": { "bundleName": "novaspace.cockpit.i18n.i18n" }
+      }
+    },
+    "resources": {
+      "css": [{ "uri": "css/style.css" }]
+    }
+  }
+}

@@ -1,0 +1,156 @@
+/* NovaSpace Finance Cockpit
+ *
+ * Restrained on purpose. This is a page a CFO reads in thirty seconds, so the
+ * design job is hierarchy and legibility, not decoration: one accent colour,
+ * generous whitespace, numbers large enough to read across a desk, and colour
+ * reserved for status so that when something is red it means something.
+ */
+
+.nsPage .sapMPageEnableScrolling {
+  background: #f5f6f7;
+}
+
+/* ---------------------------------------------------------------- header */
+
+.nsHeader {
+  padding: 1.75rem 2rem 1.25rem;
+  background: linear-gradient(135deg, #0a2d4d 0%, #14487a 100%);
+  color: #fff;
+}
+
+.nsHeaderTitle .sapMTitle {
+  color: #fff;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.nsHeaderSubtitle {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+.nsHeaderMeta {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  margin-top: 0.6rem;
+}
+
+/* ----------------------------------------------------------------- tiles */
+
+.nsTiles {
+  padding: 1.25rem 1.5rem 0.25rem;
+}
+
+.nsTile {
+  background: #fff;
+  border: 1px solid #e3e6e8;
+  border-radius: 0.5rem;
+  padding: 1.1rem 1.25rem;
+  min-height: 7.25rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.nsTileAlert {
+  border-left: 4px solid #bb0000;
+}
+
+.nsTileLabel {
+  color: #5b738b;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.nsTileValue .sapMTitle {
+  font-size: 2.4rem;
+  font-weight: 300;
+  line-height: 1.15;
+  color: #0a2d4d;
+  margin-top: 0.35rem;
+}
+
+.nsTileValue.nsAlert .sapMTitle {
+  color: #bb0000;
+  font-weight: 400;
+}
+
+.nsTileUnit {
+  color: #5b738b;
+  font-size: 0.85rem;
+  margin-left: 0.4rem;
+}
+
+.nsTileFoot {
+  color: #6a7c8d;
+  font-size: 0.78rem;
+  margin-top: 0.5rem;
+}
+
+/* ---------------------------------------------------------------- panels */
+
+.nsPanel {
+  margin: 1.25rem 1.5rem;
+  background: #fff;
+  border: 1px solid #e3e6e8;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.nsPanel > .sapMPanelContent {
+  padding: 0 1.25rem 1.25rem;
+  border: none;
+}
+
+.nsPanelBar.sapMTB {
+  background: transparent;
+  border-bottom: 1px solid #edeff0;
+  padding: 1rem 1.25rem;
+  height: auto;
+}
+
+.nsPanelSubtitle {
+  color: #6a7c8d;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  max-width: 62rem;
+  line-height: 1.45;
+}
+
+.nsStrip {
+  margin: 0.5rem 0 1rem;
+}
+
+/* ---------------------------------------------------------------- tables */
+
+.nsTable {
+  margin-top: 0.75rem;
+}
+
+.nsTable .sapMListTblHeaderCell {
+  font-size: 0.8rem;
+  color: #5b738b;
+}
+
+/* ---------------------------------------------------------------- footer */
+
+.nsFooter {
+  padding: 1.5rem 2rem 2.5rem;
+  color: #6a7c8d;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.nsFooterMeta {
+  color: #96a4b1;
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 600px) {
+  .nsHeader { padding: 1.25rem 1rem 1rem; }
+  .nsTiles  { padding: 1rem 0.75rem 0; }
+  .nsPanel  { margin: 1rem 0.75rem; }
+  .nsTileValue .sapMTitle { font-size: 2rem; }
+}

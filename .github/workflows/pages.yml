@@ -1,0 +1,52 @@
+name: Deploy dashboard to GitHub Pages
+
+# The demo has to outlive every trial, container and laptop in this project, so
+# it is deployed as static files with no build step and no backend. The app
+# reads frozen JSON snapshots of the OData service (fiori/snapshot.py); the
+# only runtime dependency is the UI5 CDN.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "fiori/webapp/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the snapshot is present
+        # A dashboard that deploys without its data is worse than one that
+        # fails to deploy: it goes live looking broken.
+        run: |
+          for f in kpi programmeBurn closeMonitor entitySummary \
+                   varianceByPeriod varianceByProgramme icOpenItems; do
+            test -s "fiori/webapp/localData/$f.json" \
+              || { echo "missing or empty: $f.json"; exit 1; }
+          done
+          echo "all snapshot files present"
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: fiori/webapp
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

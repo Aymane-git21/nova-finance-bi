@@ -1,0 +1,278 @@
+<mvc:View
+  controllerName="novaspace.cockpit.controller.Dashboard"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"
+  xmlns:f="sap.f"
+  xmlns:viz="sap.viz.ui5.controls"
+  xmlns:vizData="sap.viz.ui5.data"
+  xmlns:vizFeeds="sap.viz.ui5.controls.common.feeds"
+  height="100%">
+
+  <Page id="page" showHeader="false" class="nsPage" enableScrolling="true">
+
+    <!-- ============================ header ============================ -->
+    <VBox class="nsHeader">
+      <Title text="{i18n>appTitle}" level="H1" class="nsHeaderTitle"/>
+      <Text text="{i18n>appSubtitle}" class="nsHeaderSubtitle"/>
+      <Text text="NovaSpace Group · 4 entities · FY2023 P1 – FY2026 P6" class="nsHeaderMeta"/>
+    </VBox>
+
+    <!-- ========================== KPI tiles =========================== -->
+    <l:Grid defaultSpan="XL3 L3 M6 S12" class="nsTiles">
+
+      <VBox class="nsTile">
+        <Text text="{i18n>tileDaysToClose}" class="nsTileLabel"/>
+        <HBox alignItems="Baseline">
+          <Title text="{kpi>/groupAvgDaysToClose}" class="nsTileValue"/>
+          <Text text="{i18n>tileDaysToCloseUnit}" class="nsTileUnit"/>
+        </HBox>
+        <Text class="nsTileFoot"
+              text="{= 'Slowest: ' + ${kpi>/slowestEntity} + ' at ' + ${kpi>/slowestEntityDays} + ' days' }"/>
+      </VBox>
+
+      <VBox class="nsTile">
+        <Text text="{i18n>tileManualShare}" class="nsTileLabel"/>
+        <Title class="nsTileValue"
+               text="{ path: 'kpi>/groupManualShare', formatter: '.formatPercent' }"/>
+        <Text text="Target 12 % or below" class="nsTileFoot"/>
+      </VBox>
+
+      <VBox class="nsTile nsTileAlert">
+        <Text text="{i18n>tileProgrammesOver}" class="nsTileLabel"/>
+        <HBox alignItems="Baseline">
+          <Title text="{kpi>/programmesOverBudget}" class="nsTileValue nsAlert"/>
+          <Text text="{= 'of ' + ${kpi>/programmeCount} }" class="nsTileUnit"/>
+        </HBox>
+        <Text class="nsTileFoot"
+              text="{= ${kpi>/worstProgramme} + ' at ' + Math.round(${kpi>/worstProgrammeEac} * 100) + ' % of budget' }"/>
+      </VBox>
+
+      <VBox class="nsTile">
+        <Text text="{i18n>tileOpenIc}" class="nsTileLabel"/>
+        <Title text="{kpi>/openIcItems}" class="nsTileValue"/>
+        <Text text="Above the EUR 1 000 materiality threshold" class="nsTileFoot"/>
+      </VBox>
+
+    </l:Grid>
+
+    <!-- ====================== programme burn ========================== -->
+    <Panel class="nsPanel">
+      <headerToolbar>
+        <Toolbar class="nsPanelBar">
+          <VBox>
+            <Title text="{i18n>burnTitle}" level="H2"/>
+            <Text text="{i18n>burnSubtitle}" class="nsPanelSubtitle"/>
+          </VBox>
+        </Toolbar>
+      </headerToolbar>
+      <content>
+        <!--
+          Hand-written sap.viz, not a generated chart. The bubble plot is the
+          right form here because it puts two ratios and a magnitude on one
+          picture: the diagonal is "on plan", and distance above it is the
+          finding.
+        -->
+        <viz:VizFrame id="burnChart"
+                      vizType="bubble"
+                      height="420px"
+                      width="100%"
+                      uiConfig="{applicationSet:'fiori'}">
+          <viz:dataset>
+            <vizData:FlattenedDataset data="{programmeBurn>/}">
+              <vizData:dimensions>
+                <vizData:DimensionDefinition name="Programme" value="{programmeBurn>name}"/>
+              </vizData:dimensions>
+              <vizData:measures>
+                <vizData:MeasureDefinition name="Schedule elapsed"  value="{programmeBurn>timeElapsed}"/>
+                <vizData:MeasureDefinition name="Budget consumed"   value="{programmeBurn>budgetConsumed}"/>
+                <vizData:MeasureDefinition name="Budget"            value="{programmeBurn>budget}"/>
+              </vizData:measures>
+            </vizData:FlattenedDataset>
+          </viz:dataset>
+          <viz:feeds>
+            <vizFeeds:FeedItem uid="valueAxis"  type="Measure"   values="Schedule elapsed"/>
+            <vizFeeds:FeedItem uid="valueAxis2" type="Measure"   values="Budget consumed"/>
+            <vizFeeds:FeedItem uid="bubbleWidth" type="Measure"  values="Budget"/>
+            <vizFeeds:FeedItem uid="color"      type="Dimension" values="Programme"/>
+          </viz:feeds>
+        </viz:VizFrame>
+
+        <!-- The chart cannot draw its own diagonal, so the reading is stated. -->
+        <MessageStrip
+          class="nsStrip"
+          type="Warning"
+          showIcon="true"
+          text="{= ${kpi>/worstProgramme} + ' sits above the diagonal: ' + Math.round(${programmeBurn>/0/budgetConsumed} * 100) + ' % of budget spent against ' + Math.round(${programmeBurn>/0/timeElapsed} * 100) + ' % of schedule elapsed. Its estimate at completion is ' + Math.round(${kpi>/worstProgrammeEac} * 100) + ' % of budget.' }"/>
+
+        <Table id="programmeTable"
+               items="{programmeBurn>/}"
+               class="nsTable"
+               growing="true"
+               growingThreshold="12">
+          <headerToolbar>
+            <Toolbar><Title text="{i18n>programmeTableTitle}" level="H3"/></Toolbar>
+          </headerToolbar>
+          <columns>
+            <Column><Text text="{i18n>colProgramme}"/></Column>
+            <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>colType}"/></Column>
+            <Column hAlign="End"><Text text="{i18n>colSchedule}"/></Column>
+            <Column hAlign="End"><Text text="{i18n>colBudgetUsed}"/></Column>
+            <Column hAlign="End" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>colActuals}"/></Column>
+            <Column hAlign="End" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>colEac}"/></Column>
+            <Column hAlign="End" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>colBudget}"/></Column>
+            <Column hAlign="End"><Text text="{i18n>colEacVsBudget}"/></Column>
+          </columns>
+          <items>
+            <ColumnListItem>
+              <cells>
+                <ObjectIdentifier title="{programmeBurn>name}" text="{programmeBurn>id}"/>
+                <Text text="{programmeBurn>type}"/>
+                <Text text="{ path: 'programmeBurn>timeElapsed', formatter: '.formatPercent' }"/>
+                <Text text="{ path: 'programmeBurn>budgetConsumed', formatter: '.formatPercent' }"/>
+                <Text text="{ path: 'programmeBurn>actuals', formatter: '.formatMillions' }"/>
+                <Text text="{ path: 'programmeBurn>eac', formatter: '.formatMillions' }"/>
+                <Text text="{ path: 'programmeBurn>budget', formatter: '.formatMillions' }"/>
+                <ObjectStatus
+                  text="{ path: 'programmeBurn>eacVsBudget', formatter: '.formatPercent' }"
+                  state="{ path: 'programmeBurn>criticality', formatter: '.formatCriticality' }"/>
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+      </content>
+    </Panel>
+
+    <!-- ======================== close monitor ========================= -->
+    <Panel class="nsPanel">
+      <headerToolbar>
+        <Toolbar class="nsPanelBar">
+          <VBox>
+            <Title text="{i18n>closeTitle}" level="H2"/>
+            <Text text="{i18n>closeSubtitle}" class="nsPanelSubtitle"/>
+          </VBox>
+        </Toolbar>
+      </headerToolbar>
+      <content>
+        <viz:VizFrame id="closeChart"
+                      vizType="line"
+                      height="360px"
+                      width="100%"
+                      uiConfig="{applicationSet:'fiori'}">
+          <viz:dataset>
+            <vizData:FlattenedDataset data="{closeMonitor>/}">
+              <vizData:dimensions>
+                <vizData:DimensionDefinition name="Period" value="{closeMonitor>period}"/>
+                <vizData:DimensionDefinition name="Entity" value="{closeMonitor>entity}"/>
+              </vizData:dimensions>
+              <vizData:measures>
+                <vizData:MeasureDefinition name="Days to close" value="{closeMonitor>daysToClose}"/>
+              </vizData:measures>
+            </vizData:FlattenedDataset>
+          </viz:dataset>
+          <viz:feeds>
+            <vizFeeds:FeedItem uid="valueAxis"      type="Measure"   values="Days to close"/>
+            <vizFeeds:FeedItem uid="categoryAxis"   type="Dimension" values="Period"/>
+            <vizFeeds:FeedItem uid="color"          type="Dimension" values="Entity"/>
+          </viz:feeds>
+        </viz:VizFrame>
+
+        <Table id="entityTable" items="{entitySummary>/}" class="nsTable">
+          <headerToolbar>
+            <Toolbar><Title text="{i18n>entityTableTitle}" level="H3"/></Toolbar>
+          </headerToolbar>
+          <columns>
+            <Column><Text text="{i18n>colEntity}"/></Column>
+            <Column hAlign="End"><Text text="{i18n>colDaysToClose}"/></Column>
+            <Column hAlign="End"><Text text="{i18n>colManual}"/></Column>
+            <Column hAlign="End"><Text text="{i18n>colLate}"/></Column>
+          </columns>
+          <items>
+            <ColumnListItem>
+              <cells>
+                <ObjectIdentifier title="{entitySummary>entityName}" text="{entitySummary>entity}"/>
+                <ObjectStatus
+                  text="{entitySummary>avgDaysToClose}"
+                  state="{ path: 'entitySummary>avgDaysToClose', formatter: '.formatCloseState' }"/>
+                <Text text="{ path: 'entitySummary>avgManualShare', formatter: '.formatPercent' }"/>
+                <Text text="{ path: 'entitySummary>avgLateShare', formatter: '.formatPercent' }"/>
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+      </content>
+    </Panel>
+
+    <!-- ==================== budget vs actual trend ==================== -->
+    <Panel class="nsPanel">
+      <headerToolbar>
+        <Toolbar class="nsPanelBar">
+          <VBox>
+            <Title text="{i18n>varianceTitle}" level="H2"/>
+            <Text text="{i18n>varianceSubtitle}" class="nsPanelSubtitle"/>
+          </VBox>
+        </Toolbar>
+      </headerToolbar>
+      <content>
+        <viz:VizFrame id="varianceChart"
+                      vizType="column"
+                      height="340px"
+                      width="100%"
+                      uiConfig="{applicationSet:'fiori'}">
+          <viz:dataset>
+            <vizData:FlattenedDataset data="{varianceByPeriod>/}">
+              <vizData:dimensions>
+                <vizData:DimensionDefinition name="Period" value="{varianceByPeriod>period}"/>
+              </vizData:dimensions>
+              <vizData:measures>
+                <vizData:MeasureDefinition name="Actual" value="{varianceByPeriod>actual}"/>
+                <vizData:MeasureDefinition name="Budget" value="{varianceByPeriod>budget}"/>
+              </vizData:measures>
+            </vizData:FlattenedDataset>
+          </viz:dataset>
+          <viz:feeds>
+            <vizFeeds:FeedItem uid="valueAxis"    type="Measure"   values="Actual,Budget"/>
+            <vizFeeds:FeedItem uid="categoryAxis" type="Dimension" values="Period"/>
+          </viz:feeds>
+        </viz:VizFrame>
+      </content>
+    </Panel>
+
+    <!-- ===================== intercompany items ======================= -->
+    <Panel class="nsPanel">
+      <headerToolbar>
+        <Toolbar class="nsPanelBar">
+          <Title text="{i18n>icTableTitle}" level="H2"/>
+        </Toolbar>
+      </headerToolbar>
+      <content>
+        <Table id="icTable" items="{icOpenItems>/}" class="nsTable">
+          <columns>
+            <Column><Text text="{i18n>colPair}"/></Column>
+            <Column><Text text="{i18n>colPeriod}"/></Column>
+            <Column hAlign="End"><Text text="{i18n>colNet}"/></Column>
+            <Column hAlign="End" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>colLines}"/></Column>
+          </columns>
+          <items>
+            <ColumnListItem>
+              <cells>
+                <Text text="{icOpenItems>pair}"/>
+                <Text text="{icOpenItems>period}"/>
+                <ObjectStatus state="Warning"
+                              text="{ path: 'icOpenItems>netAmount', formatter: '.formatEuro' }"/>
+                <Text text="{icOpenItems>lineCount}"/>
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+      </content>
+    </Panel>
+
+    <VBox class="nsFooter">
+      <Text text="{i18n>footerNote}"/>
+      <Text text="{= 'Snapshot taken ' + ${kpi>/generatedAt} }" class="nsFooterMeta"/>
+    </VBox>
+
+  </Page>
+</mvc:View>

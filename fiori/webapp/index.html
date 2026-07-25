@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaSpace Finance Cockpit</title>
+
+  <!--
+    UI5 from the CDN, and the app reads frozen JSON rather than a live service.
+    That combination is the entire permanence strategy: this page opens with no
+    database, no service, no container and no network beyond the CDN. Trials
+    expire and laptops get rebuilt; this still opens in two years.
+
+    The data is a snapshot of the real OData service (fiori/snapshot.py), taken
+    from the running CAP layer over 1.12M journal lines in HANA - not hand-made
+    demo numbers.
+  -->
+  <!--
+    Pinned to the 1.120 LTS line, not to a patch. Patch-level CDN paths such as
+    /1.120.27/ return 404 - only the minor is served - so this is the most
+    specific pin actually available.
+  -->
+  <script id="sap-ui-bootstrap"
+          src="https://ui5.sap.com/1.120/resources/sap-ui-core.js"
+          data-sap-ui-theme="sap_horizon"
+          data-sap-ui-async="true"
+          data-sap-ui-compat-version="edge"
+          data-sap-ui-resource-roots='{"novaspace.cockpit": "./"}'
+          data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+          data-sap-ui-libs="sap.m,sap.ui.core,sap.ui.layout,sap.viz">
+  </script>
+</head>
+<body class="sapUiBody">
+  <div data-sap-ui-component
+       data-name="novaspace.cockpit"
+       data-id="container"
+       data-settings='{"id": "novaspace-cockpit"}'
+       style="height: 100%"></div>
+</body>
+</html>

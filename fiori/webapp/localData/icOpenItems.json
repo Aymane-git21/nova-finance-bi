@@ -1,0 +1,32 @@
+[
+ {
+  "pair": "NS10 \u2194 NS30",
+  "period": "2025-11",
+  "netAmount": 37065.61,
+  "lineCount": 455
+ },
+ {
+  "pair": "NS20 \u2194 NS30",
+  "period": "2025-06",
+  "netAmount": 26245.62,
+  "lineCount": 363
+ },
+ {
+  "pair": "NS20 \u2194 NS40",
+  "period": "2024-04",
+  "netAmount": 13104.43,
+  "lineCount": 368
+ },
+ {
+  "pair": "NS10 \u2194 NS40",
+  "period": "2023-07",
+  "netAmount": -20356.9,
+  "lineCount": 302
+ },
+ {
+  "pair": "NS20 \u2194 NS30",
+  "period": "2023-03",
+  "netAmount": -8352.56,
+  "lineCount": 380
+ }
+]
