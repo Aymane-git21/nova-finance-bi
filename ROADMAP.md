@@ -62,24 +62,24 @@ Honest constraint, stated openly in the repo README: BO, Lumira and Analysis for
 Assumes Windows 11; macOS/Linux notes inline. Everything here is free.
 
 ## 0.1 Base tooling
-- [ ] **Git** — install from git-scm.com (macOS: `xcode-select --install`; Linux: `apt install git`). Configure identity:
-  `git config --global user.name "..."` / `git config --global user.email "..."`
-- [ ] **GitHub account** — create if needed. Enable 2FA.
-- [ ] **VS Code** — install, then extensions: *Python*, *SAP Fiori tools – Extension Pack*, *Markdown All in One*, *Mermaid preview* (for diagrams).
-- [ ] **Python 3.12+** — from python.org (tick "Add to PATH"). Then:
-  `pip install pandas numpy faker`
-- [ ] **Node.js LTS** (20.x or 22.x) — from nodejs.org. Then the UI5/Fiori toolchain:
-  `npm i -g @ui5/cli @sap/generator-fiori yo`
-- [ ] **SAP HANA client for Python** (lets you load data and query HANA Cloud from scripts):
-  `pip install hdbcli`
+- [x] **Git** — install from git-scm.com (macOS: `xcode-select --install`; Linux: `apt install git`). Configure identity:
+  `git config --global user.name "..."` / `git config --global user.email "..."` — *git 2.47.0, identity configured.*
+- [x] **GitHub account** — create if needed. Enable 2FA. — *account active, repo pushed. **2FA: verify manually** at github.com/settings/security.*
+- [x] **VS Code** — install, then extensions: *Python*, *SAP Fiori tools – Extension Pack*, *Markdown All in One*, *Mermaid preview* (for diagrams). — *VS Code 1.130.0; all four installed, plus UI5 Language Assistant, App Studio Toolkit, Yeoman UI and CDS language support.*
+- [x] **Python 3.12+** — from python.org (tick "Add to PATH"). Then:
+  `pip install pandas numpy faker` — *running **Python 3.11.9** (Microsoft Store build), not 3.12. Everything this project needs works on 3.11: pandas 3.0.5, numpy 2.2.6, faker 40.36.0, pytest 9.1.1. No reason to upgrade.*
+- [x] **Node.js LTS** (20.x or 22.x) — from nodejs.org. Then the UI5/Fiori toolchain:
+  `npm i -g @ui5/cli @sap/generator-fiori yo` — *running **Node 24.16.0**, newer than the roadmap's 20/22. UI5 CLI and the Fiori generator install and run clean on it.*
+- [x] **SAP HANA client for Python** (lets you load data and query HANA Cloud from scripts):
+  `pip install hdbcli` — *installed.*
 
 ## 0.2 Conditional tooling (decide in Phase 4, install then)
 - [ ] **Eclipse + ADT (ABAP Development Tools)** — only needed once you have an ABAP environment. Eclipse IDE for Java Developers + ADT plugin from `tools.hana.ondemand.com`.
 - [ ] **Docker Desktop** — only if you fall back to the local ABAP Platform trial image (Phase 4, option B). Requirements are heavy: ~32 GB RAM recommended (16 GB is painful), 100–150 GB free disk. If your desktop can't do this, use option A (cloud) and skip Docker entirely.
 
 ## 0.3 Repository skeleton
-- [ ] Create GitHub repo `nova-finance-bi` (public). Clone locally.
-- [ ] Create structure:
+- [x] Create GitHub repo `nova-finance-bi` (public). Clone locally. — *[github.com/Aymane-git21/nova-finance-bi](https://github.com/Aymane-git21/nova-finance-bi), cloned to `~/Desktop/nova-finance-bi`.*
+- [x] Create structure:
 
 ```
 nova-finance-bi/
@@ -102,9 +102,11 @@ nova-finance-bi/
 └── sac/                       ← screenshots, story exports, video link, tradeoff note
 ```
 
-- [ ] Add MIT license and a `.gitignore` (Python + Node templates).
+- [x] Add MIT license and a `.gitignore` (Python + Node templates). — *plus SAP/HDI, secrets and generated-data rules.*
 
-**Deliverable:** initialized repo with skeleton, first commit pushed.
+**Deliverable:** initialized repo with skeleton, first commit pushed. ✅ **Done.**
+
+*Deviation from the tree above: `docs/gdpr-and-data-protection.md` (Phase 8) and a `README.md` in each of `data-generator/`, `hana/`, `abap/`, `fiori/`, `sac/` were added. Each service directory documents its own contract — a directory with a README explains itself to an interviewer browsing GitHub; an empty one does not.*
 
 ---
 
@@ -121,7 +123,7 @@ nova-finance-bi/
 - [ ] Subscribe to **SAP Business Application Studio** (BAS) — free plan. Create two dev spaces later as needed: *SAP HANA Native Application* (Phase 3) and *SAP Fiori* (Phase 5).
 - [ ] **Do NOT register the SAC trial yet.** Its 30-day clock (extendable to ~90 around day 20) must not start before your data is ready. SAC registration happens in Phase 6.
 
-**Deliverable:** `docs/adr/001-landscape-choice.md` — a half-page ADR recording the trial vs free-tier PAYG choice and why (expiry, entitlement model, cost guardrails) — a real decision with real tradeoffs, which is exactly what an ADR is for. (Yes, document even this. Interviewers love ADRs.)
+**Deliverable:** `docs/adr/001-landscape-choice.md` — a half-page ADR recording the trial vs free-tier PAYG choice and why (expiry, entitlement model, cost guardrails) — a real decision with real tradeoffs, which is exactly what an ADR is for. (Yes, document even this. Interviewers love ADRs.) ✅ **Written in Phase 0** — the decision does not depend on executing the signup, so it is recorded up front. Revisit it only if the signup surfaces something the ADR did not anticipate.
 
 ---
 
