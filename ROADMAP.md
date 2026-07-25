@@ -187,6 +187,17 @@ The order matters: **KPIs before schema, schema before code.** This is exactly t
 ---
 # PHASE 3 — SAP HANA Cloud modeling (Weekend 2)
 
+> ## ✅ COMPLETE
+>
+> HANA Express running locally · **1,182,798 rows loaded in 35 s** · 21 views across L1/L2/L3 · `TF_PROGRAMME_RUNRATE` SQLScript table function deployed · [`docs/bw4hana-mapping.md`](docs/bw4hana-mapping.md) written.
+>
+> **All 24 cross-checks against the Python reference agree** (`hana/verify_against_python.py`). The table function reproduces the Python EAC to within €0.28 on €800 m.
+>
+> Three defects the cross-check caught, none of which would have been visible from a dashboard:
+> - **FX impact was overstated by ~€6,900.** `CV_FX_IMPACT` differenced the *booked* group amount against a budget-rate figure. Reversals carry the original document's group amount into the next period (FB08 behaviour), so that difference silently attributed a reversal's rate carry-over to FX. Now recomputed from the local amount on both sides, with the booked figure kept alongside for reconciliation.
+> - **Budget variance was computed at two different grains** in SQL and Python, with a `FULL OUTER` on one side and a left join on the other. They could never have agreed. Python corrected to match the SQL, which was the better design.
+> - **A full-year budget flatters an open year.** FY2026 is closed through P6 but budget phases across 12, so the group looked to be at 57 % of plan and comfortably under. Now compared year-to-date, with a test pinning the trap so it stays visible.
+>
 > ### 🔄 REVISED — runs on SAP HANA, express edition (local Docker), not HANA Cloud. See [ADR-002](docs/adr/002-fully-local-landscape.md).
 >
 > Same database engine, so 3.2 and 3.3 are unchanged: same column store, same SQLScript, same calculation views, same HDI. Three differences:
@@ -207,9 +218,11 @@ Build three layers of **calculation views** in BAS (dev space *SAP HANA Native A
 - [ ] **L3 REPORTING / virtual data mart** — star-join calculation views (cube semantics): `CV_PL_ACTUALS`, `CV_BUDGET_VARIANCE`, `CV_CLOSE_MONITOR`, `CV_FX_IMPACT`, each with measures, restricted/calculated columns (e.g. “personnel cost, manual postings only”), input parameters for fiscal period, currency and plan version. *(Analogue: CompositeProvider + BW query elements: restricted key figures, variables.)*
 
 ## 3.3 The mapping document (2 h) — what makes it readable to a BW interviewer
-- [ ] Write `docs/bw4hana-mapping.md`: a table with one row per object — *native HANA object → BW/4HANA equivalent → why this layer exists → what would differ in a real BW/4 system* (e.g. delta handling via DTP, InfoObject-based master data governance, authorizations via analysis authorizations). This document lets you talk BW fluently in the interview even though the build is HANA-native.
 
-**Deliverables:** HDI/SQL sources in `hana/`, loader script, `bw4hana-mapping.md`.
+> ✅ Written. Goes beyond the object table with four sections on what BW/4HANA actually gives you that a native build does not: persistence, delta handling, analysis authorizations and standard content — plus an honest section on where native wins.
+- [x] Write `docs/bw4hana-mapping.md`: a table with one row per object — *native HANA object → BW/4HANA equivalent → why this layer exists → what would differ in a real BW/4 system* (e.g. delta handling via DTP, InfoObject-based master data governance, authorizations via analysis authorizations). This document lets you talk BW fluently in the interview even though the build is HANA-native.
+
+**Deliverables:** HDI/SQL sources in `hana/`, loader script, `bw4hana-mapping.md`. ✅ **All delivered**, plus the container lifecycle script, the SQLScript table function and `verify_against_python.py` — 24 checks proving the SQL and the Python agree.
 
 ---
 

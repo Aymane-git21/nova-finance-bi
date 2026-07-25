@@ -192,36 +192,47 @@ def budget_variance(
     )
     actual["programme_key"] = actual["programme_id"].fillna("(none)")
 
+    grain = [
+        "company_code", "fiscal_year", "fiscal_period", "cost_center",
+        "account_group", "programme_key",
+    ]
+
     actual_rows = (
-        actual.groupby(
-            ["company_code", "programme_key", "account_group", "fiscal_year",
-             "fiscal_period"],
-            observed=True,
-        )["signed"]
+        actual.groupby(grain, observed=True)["signed"]
         .sum()
         .reset_index()
         .rename(columns={"signed": "actual"})
     )
 
+    # Budget is annual; phase it evenly across twelve periods so it lands on
+    # the same grain as the actuals.
     budget = fact_budget.copy()
     budget["programme_key"] = budget["programme_id"].fillna("(none)")
-    phased = (
+    annual = (
         budget.groupby(
-            ["company_code", "programme_key", "account_group", "fiscal_year"],
+            ["company_code", "fiscal_year", "cost_center", "account_group",
+             "programme_key"],
             observed=True,
         )["amount_group_currency"]
         .sum()
         .reset_index()
         .rename(columns={"amount_group_currency": "budget_annual"})
     )
+    periods = pd.DataFrame({"fiscal_period": range(1, 13)})
+    phased = annual.merge(periods, how="cross")
     phased["budget_period"] = phased["budget_annual"] / 12.0
 
+    # Outer, not left. A cost centre that spent with no budget and one that was
+    # budgeted and spent nothing are both real findings, and an inner or left
+    # join hides exactly those two cases. This also has to match the
+    # FULL OUTER JOIN in hana/sql/03_l3_reporting.sql, or the two
+    # implementations disagree by construction rather than by defect.
     merged = actual_rows.merge(
-        phased.drop(columns=["budget_annual"]),
-        on=["company_code", "programme_key", "account_group", "fiscal_year"],
-        how="left",
+        phased.drop(columns=["budget_annual"]), on=grain, how="outer"
     )
+    merged["actual"] = merged["actual"].fillna(0.0)
     merged["budget_period"] = merged["budget_period"].fillna(0.0)
+
     merged["variance"] = (merged["actual"] - merged["budget_period"]).round(2)
     # Undefined, not zero, where there is no budget to vary from.
     merged["variance_pct"] = np.where(

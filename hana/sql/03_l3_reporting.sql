@@ -28,11 +28,11 @@ SELECT
   COUNT(*)                                    AS "line_count",
 
   -- Restricted key figures.
-  SUM(CASE WHEN j."is_manual_posting" THEN j."signed_amount_group" ELSE 0 END)
+  SUM(CASE WHEN j."is_manual_posting" = TRUE THEN j."signed_amount_group" ELSE 0 END)
                                               AS "amount_manual",
-  SUM(CASE WHEN j."is_manual_posting" THEN 1 ELSE 0 END)
+  SUM(CASE WHEN j."is_manual_posting" = TRUE THEN 1 ELSE 0 END)
                                               AS "line_count_manual",
-  SUM(CASE WHEN j."is_late_posting"   THEN 1 ELSE 0 END)
+  SUM(CASE WHEN j."is_late_posting" = TRUE THEN 1 ELSE 0 END)
                                               AS "line_count_late",
   SUM(CASE WHEN j."fiscal_period" > 12 THEN 1 ELSE 0 END)
                                               AS "line_count_year_end_adjustment"
@@ -121,9 +121,9 @@ WITH "postings" AS (
     j."fiscal_year",
     j."reporting_period" AS "fiscal_period",
     COUNT(*) AS "line_count",
-    SUM(CASE WHEN j."is_manual_posting" THEN 1 ELSE 0 END) AS "manual_line_count",
-    SUM(CASE WHEN j."is_late_posting"   THEN 1 ELSE 0 END) AS "late_line_count",
-    SUM(CASE WHEN j."is_late_posting"
+    SUM(CASE WHEN j."is_manual_posting" = TRUE THEN 1 ELSE 0 END) AS "manual_line_count",
+    SUM(CASE WHEN j."is_late_posting" = TRUE THEN 1 ELSE 0 END) AS "late_line_count",
+    SUM(CASE WHEN j."is_late_posting" = TRUE
              THEN ABS(j."amount_group_currency") ELSE 0 END) AS "late_value"
   FROM "NOVASPACE_L2"."V_JOURNAL" j
   GROUP BY j."company_code", j."fiscal_year", j."reporting_period"
@@ -174,9 +174,14 @@ SELECT
   j."fiscal_year",
   j."reporting_period"                       AS "fiscal_period",
   j."account_group",
-  SUM(j."signed_amount_group")               AS "amount_at_actual_rate",
+  -- Booked vs recomputed. They differ only on reversals, which carry the
+  -- original document's group amount into a later period - see the note in
+  -- L2.V_JOURNAL. fx_impact must be built from the recomputed figure, or the
+  -- reversal carry-over is misreported as a rate effect.
+  SUM(j."signed_amount_group")               AS "amount_group_booked",
+  SUM(j."signed_amount_at_actual_rate")      AS "amount_at_actual_rate",
   SUM(j."signed_amount_at_budget_rate")      AS "amount_at_budget_rate",
-  SUM(j."signed_amount_group")
+  SUM(j."signed_amount_at_actual_rate")
     - SUM(j."signed_amount_at_budget_rate")  AS "fx_impact",
   SUM(j."amount_local_currency" * j."rate_budget") AS "gross_at_budget_rate",
   MIN(j."rate_actual")                       AS "rate_actual",

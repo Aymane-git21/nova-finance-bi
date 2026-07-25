@@ -32,11 +32,19 @@ services:
         soft: 1048576
         hard: 1048576
     sysctls:
-      # HANA wants far more shared memory and ephemeral ports than a container
-      # gets by default. All four are namespaced, so no privileged mode needed.
-      kernel.shmmax: "1073741824"
-      kernel.shmmni: "524288"
-      kernel.shmall: "8388608"
+      # SAP documents four sysctls for HANA. Only two of them are both needed
+      # and settable on the WSL2 kernel this runs on:
+      #
+      #   kernel.shmmni  - documented as 524288, which the kernel rejects with
+      #                    EINVAL: IPCMNI caps it at 32768 unless the kernel was
+      #                    built with CONFIG_IPC_MNI_EXTEND. 32768 is the
+      #                    highest value that is actually accepted, and it is
+      #                    still 8x the host default of 4096.
+      #   kernel.shmmax  - omitted. The WSL2 kernel already defaults it to
+      #   kernel.shmall    ~1.8e19, far above SAP's documented 1073741824.
+      #                    Setting them here would *lower* the limits, not
+      #                    raise them, which is the opposite of the intent.
+      kernel.shmmni: "32768"
       net.ipv4.ip_local_port_range: "40000 60999"
     stop_grace_period: 2m
     healthcheck:
@@ -51,4 +59,8 @@ services:
 
 volumes:
   hxe-data:
+    # Created by `hxe.sh init`, which has to seed the master password into it
+    # before the database ever starts. Declared external so Compose adopts it
+    # rather than warning about a volume it did not create.
     name: novaspace-hxe-data
+    external: true

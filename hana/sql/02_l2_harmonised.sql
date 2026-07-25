@@ -45,7 +45,9 @@ SELECT
   d."period_end_date",
   d."working_day_of_period",
   d."working_days_after_period_end",
-  SUM(CASE WHEN d."is_working_day" THEN 1 ELSE 0 END)
+  -- "= TRUE" is not redundant: HANA will not accept a bare BOOLEAN column as a
+  -- CASE predicate and rejects it with a syntax error pointing at THEN.
+  SUM(CASE WHEN d."is_working_day" = TRUE THEN 1 ELSE 0 END)
     OVER (ORDER BY d."date_id" ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
     AS "working_day_seq"
 FROM "NOVASPACE_L1"."V_DATE" d;
@@ -156,8 +158,23 @@ SELECT
        THEN j."amount_local_currency" ELSE -j."amount_local_currency" END
     AS "signed_amount_local",
 
-  -- The same local amount translated at the frozen budget rate. Differencing
-  -- this against signed_amount_group isolates rate movement from behaviour.
+  -- The same local amount translated twice: once at the period's actual rate,
+  -- once at the fiscal year's frozen budget rate. KPI-06 is the difference.
+  --
+  -- The actual-rate figure is RECOMPUTED from the local amount rather than
+  -- taken from the booked group amount, and the distinction is not academic.
+  -- A reversal carries the original document's group amount into the next
+  -- period (FB08 behaviour), so for reversals the booked figure reflects the
+  -- *previous* period's rate. Differencing that against a budget-rate figure
+  -- would attribute the reversal's rate carry-over to FX impact - worth about
+  -- EUR 6,900 on this dataset, all of it spurious.
+  --
+  -- Both are exposed: signed_amount_group is what the ledger says, and
+  -- signed_amount_at_actual_rate is what a pure rate comparison needs.
+  CASE WHEN j."debit_credit_ind" = 'S'
+       THEN j."amount_local_currency" ELSE -j."amount_local_currency" END
+    * fx."rate_actual"
+    AS "signed_amount_at_actual_rate",
   CASE WHEN j."debit_credit_ind" = 'S'
        THEN j."amount_local_currency" ELSE -j."amount_local_currency" END
     * fx."rate_budget"
@@ -183,9 +200,9 @@ SELECT
   -- Unordered pair key: "who is out" is meaningless without "with whom", and
   -- keying it ordered would count one open item twice.
   CASE
-    WHEN j."is_intercompany" AND j."company_code" < j."ic_partner_company"
+    WHEN j."is_intercompany" = TRUE AND j."company_code" < j."ic_partner_company"
       THEN j."company_code" || '|' || j."ic_partner_company"
-    WHEN j."is_intercompany"
+    WHEN j."is_intercompany" = TRUE
       THEN j."ic_partner_company" || '|' || j."company_code"
   END AS "ic_pair",
 

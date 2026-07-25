@@ -69,8 +69,8 @@ Phase order was changed after Phase 0: SAP BTP proved unreachable and the SAC tr
 | 0 | Desktop setup, repo skeleton | ✅ done |
 | 1 | SAP accounts & BTP landscape | ⏭️ dropped — landscape is local ([ADR-002](docs/adr/002-fully-local-landscape.md)) |
 | 2 | Business design & synthetic data | ✅ done — 1.12 M lines, 102 tests |
+| 3 | HANA Express layered modeling | ✅ done — 21 views, 24/24 cross-checks agree |
 | 6 | SAC reporting + planning *(moved up — trial clock running)* | ⬜ next |
-| 3 | HANA Express layered modeling | ⬜ not started |
 | 4 | SQLScript pushdown + CAP OData V4 + authored ABAP | ⬜ not started |
 | 5 | Fiori / UI5 consumption layer | ⬜ not started |
 | 7 | Performance & eco-design | ⬜ not started |

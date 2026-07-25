@@ -118,11 +118,48 @@ def test_variance_percentage_is_undefined_where_there_is_no_budget(dataset, jour
 
 
 def test_group_level_variance_stays_within_a_believable_band(dataset, journal):
-    """A group running 300% over budget would mean the plan data is nonsense."""
+    """A group running 300% over budget would mean the plan data is nonsense.
+
+    Compared year-to-date, not against the annual budget. The final fiscal year
+    is only closed through period 6, and the budget is phased across all twelve
+    - so an unguarded comparison shows the group at 57% of budget and "under
+    plan", when really it is half a year in.
+
+    This is a real reporting trap, not a test artefact: any budget-vs-actual
+    tile on a partial year has to bound the budget to the periods that have
+    actually closed, or it flatters every open year by construction.
+    """
     variance = budget_variance(journal, dataset.fact_budget, dataset.dim_gl_account)
-    totals = variance.groupby("fiscal_year")[["actual", "budget_period"]].sum()
+
+    last_closed = {
+        year: (config.LAST_CLOSED_PERIOD_IN_FINAL_YEAR
+               if year == config.LAST_FISCAL_YEAR else 12)
+        for year in range(config.FIRST_FISCAL_YEAR, config.LAST_FISCAL_YEAR + 1)
+    }
+    ytd = variance[
+        variance["fiscal_period"] <= variance["fiscal_year"].map(last_closed)
+    ]
+
+    totals = ytd.groupby("fiscal_year")[["actual", "budget_period"]].sum()
     ratio = (totals["actual"] / totals["budget_period"]).dropna()
     assert ratio.between(0.75, 1.35).all(), ratio.to_dict()
+
+
+def test_full_year_budget_flatters_an_open_year(dataset, journal):
+    """The trap the previous test guards against, asserted so it stays visible.
+
+    Kept as its own test because the failure mode is silent: the number looks
+    plausible, the chart renders, and the group appears comfortably under plan
+    right up until December.
+    """
+    variance = budget_variance(journal, dataset.fact_budget, dataset.dim_gl_account)
+    totals = variance.groupby("fiscal_year")[["actual", "budget_period"]].sum()
+    open_year = totals.loc[config.LAST_FISCAL_YEAR]
+    unguarded = open_year["actual"] / open_year["budget_period"]
+    assert unguarded < 0.75, (
+        "the open year should look artificially favourable against a full-year "
+        f"budget, but came out at {unguarded:.2f}"
+    )
 
 
 # -- KPI-05 run rate and EAC ------------------------------------------------

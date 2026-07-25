@@ -80,12 +80,19 @@ EOF
 
   log "seeding the master password into volume ${VOLUME}"
   docker volume create "${VOLUME}" >/dev/null
-  # The password file has to live inside the volume, owned by hxeadmin (12000)
-  # and unreadable by anyone else, or HANA refuses to start.
+  # Two things have to be right here, and only one of them is obvious.
+  #
+  #   1. The password file must be owned by hxeadmin (uid 12000, gid 79) and
+  #      readable by nobody else, or HANA refuses to read it.
+  #   2. The mount *directory* itself must be rwx for hxeadmin. A fresh Docker
+  #      volume is owned by root, so the container's startup check fails with
+  #      "Insufficient permissions on /hana/mounts" long before it ever looks
+  #      at the file - which reads like a password problem and is not one.
   printf '{"master_password":"%s"}' "${password}" \
     | docker run --rm -i -v "${VOLUME}:/hana/mounts" alpine:3 sh -c '
         cat > /hana/mounts/password.json
-        chown 12000:79 /hana/mounts/password.json
+        chown -R 12000:79 /hana/mounts
+        chmod 755 /hana/mounts
         chmod 600 /hana/mounts/password.json
       '
   log "init complete. Next: ./hxe.sh start"
