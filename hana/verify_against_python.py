@@ -112,6 +112,46 @@ def main() -> int:
             f"HANA {actual:,} vs Python {len(expected):,}",
         )
 
+    # -- the published interface layer -------------------------------------
+    #
+    # Added after a real miss. Optimisation work dropped the aggregate with
+    # CASCADE, which took four of the ten NOVASPACE_API views with it, and this
+    # script passed 24/24 anyway - because every check below queries L3
+    # directly and none of them touches the layer consumers actually bind to.
+    # The OData service was broken and the correctness gate said everything was
+    # fine. A gate only covers what it reads.
+    print("published interface layer")
+    expected_api_views = [
+        "V_BUDGET_VARIANCE", "V_PROGRAMME_BURN", "V_CLOSE_MONITOR",
+        "V_PL_ACTUALS", "V_IC_RECONCILIATION",
+        "ANALYTICSSERVICE_BUDGETVARIANCE", "ANALYTICSSERVICE_PROGRAMMEBURN",
+        "ANALYTICSSERVICE_CLOSEMONITOR", "ANALYTICSSERVICE_PLACTUALS",
+        "ANALYTICSSERVICE_ICRECONCILIATION",
+    ]
+    present = set(
+        frame(cursor, "SELECT VIEW_NAME AS \"v\" FROM VIEWS "
+                      "WHERE SCHEMA_NAME = 'NOVASPACE_API'")["v"]
+    )
+    missing = [v for v in expected_api_views if v not in present]
+    report.check(
+        "every published interface view exists",
+        not missing,
+        f"{len(present)} of {len(expected_api_views)} present"
+        + (f", MISSING {missing}" if missing else ""),
+    )
+
+    # Present is not the same as working: a view can exist and still fail to
+    # resolve if something it selects from has changed shape underneath it.
+    for view in expected_api_views:
+        if view in present:
+            try:
+                count = frame(
+                    cursor, f'SELECT COUNT(*) AS "n" FROM "NOVASPACE_API"."{view}"'
+                )
+                report.check(f"{view} returns rows", int(count["n"].iloc[0]) > 0)
+            except Exception as error:  # noqa: BLE001
+                report.check(f"{view} resolves", False, str(error)[:90])
+
     # -- KPI-01 days to close ---------------------------------------------
     print("\nKPI-01 days to close")
     sql_close = frame(cursor, """
