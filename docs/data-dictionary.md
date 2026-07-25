@@ -70,9 +70,9 @@ Three-level standard hierarchy, the BW classic. Modelled as a parent-child struc
 | `company_code` | NVARCHAR(4) | no | FK → `DIM_COMPANY_CODE` | `NS30` |
 | `division_id` | NVARCHAR(10) | no | **Hierarchy level 1** | `NS30-ENG` |
 | `division_name` | NVARCHAR(60) | no | | `Engineering` |
-| `department_id` | NVARCHAR(10) | no | **Hierarchy level 2** | `NS30-ENG-02` |
+| `department_id` | NVARCHAR(12) | no | **Hierarchy level 2** | `NS30-ENG-02` |
 | `department_name` | NVARCHAR(60) | no | | `Avionics & Software` |
-| `parent_id` | NVARCHAR(10) | no | Immediate parent = `department_id`. The recursive edge | `NS30-ENG-02` |
+| `parent_id` | NVARCHAR(12) | no | Immediate parent = `department_id`. The recursive edge | `NS30-ENG-02` |
 | `hierarchy_level` | INTEGER | no | Always `3` for leaves | `3` |
 | `is_overhead` | BOOLEAN | no | Support centre whose costs are allocated out (drives `KA` postings) | `false` |
 | `valid_from` | DATE | no | | `2023-01-01` |

@@ -1,0 +1,54 @@
+# SAP HANA, express edition - server only.
+#
+# Server-only, not the "Server + Applications" image: the latter bundles XS
+# Advanced and needs 16-24 GB of RAM. This machine has 19.3 GB total and has to
+# run everything else too. The cost of that choice is no browser-based
+# calculation-view editor, which is why L3 views here are authored as
+# .hdbcalculationview design-time artifacts and deployed with @sap/hdi-deploy.
+# See ../docs/adr/002-fully-local-landscape.md.
+#
+# Bring it up with ./hxe.sh start - not with `docker compose up` directly, since
+# the master password has to be seeded into the volume first.
+
+services:
+  hxe:
+    image: saplabs/hanaexpress:latest
+    container_name: novaspace-hxe
+    hostname: hxe
+    command:
+      - "--passwords-url"
+      - "file:///hana/mounts/password.json"
+      - "--agree-to-sap-license"
+    volumes:
+      - hxe-data:/hana/mounts
+    ports:
+      - "39013:39013"        # SYSTEMDB SQL
+      - "39017:39017"        # HXE tenant SQL - what the loader connects to
+      - "39041-39045:39041-39045"
+      - "1128-1129:1128-1129"
+      - "59013-59014:59013-59014"
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+    sysctls:
+      # HANA wants far more shared memory and ephemeral ports than a container
+      # gets by default. All four are namespaced, so no privileged mode needed.
+      kernel.shmmax: "1073741824"
+      kernel.shmmni: "524288"
+      kernel.shmall: "8388608"
+      net.ipv4.ip_local_port_range: "40000 60999"
+    stop_grace_period: 2m
+    healthcheck:
+      # The tenant accepts connections well after the container reports running.
+      # Treating "container up" as "database ready" is how the loader ends up
+      # failing on a perfectly healthy system.
+      test: ["CMD-SHELL", "/usr/sap/HXE/HDB90/exe/hdbsql -n localhost:39017 -d HXE -u SYSTEM -p \"$$(cat /hana/mounts/password.json | sed 's/.*: *\"//;s/\".*//')\" -x 'SELECT 1 FROM DUMMY' >/dev/null 2>&1"]
+      interval: 30s
+      timeout: 20s
+      retries: 40
+      start_period: 5m
+
+volumes:
+  hxe-data:
+    name: novaspace-hxe-data
