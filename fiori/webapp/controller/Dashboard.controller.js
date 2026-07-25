@@ -10,7 +10,24 @@ sap.ui.define([
       // Chart properties are set in code rather than in the view: they are
       // presentation detail, and burying forty lines of vizProperties in XML
       // makes the view unreadable for no benefit.
-      this.getView().loaded().then(this._styleCharts.bind(this));
+      //
+      // Applied only once every model has finished loading, and that ordering
+      // is not optional. Setting them on view-loaded looked correct and was
+      // not: the JSON models resolve asynchronously, VizFrame recomputes its
+      // axis scale when data arrives, and the fixed 0-100% ranges below were
+      // silently overwritten. The chart came out with a 0-120% x-axis against
+      // a 0-150% y-axis - which means "on plan" was no longer the 45-degree
+      // diagonal the subtitle tells the reader to look for.
+      //
+      // dataLoaded() rather than attachRequestCompleted(): it resolves
+      // immediately for a model that has already loaded, so there is no race
+      // between attaching the handler and the request finishing.
+      var component = this.getOwnerComponent();
+      var models = ["programmeBurn", "closeMonitor", "varianceByPeriod"];
+
+      Promise.all(
+        models.map(function (name) { return component.getModel(name).dataLoaded(); })
+      ).then(this._styleCharts.bind(this));
     },
 
     _styleCharts: function () {
@@ -22,20 +39,39 @@ sap.ui.define([
           title: { visible: false },
           legend: { visible: true },
           plotArea: {
-            // Both axes are shares of a whole, so both are fixed to 0-100%.
-            // Letting them auto-scale would hide the diagonal relationship
-            // that the entire chart exists to show.
             dataLabel: { visible: false },
             bubbleSizeMax: 42,
-            bubbleSizeMin: 8
+            bubbleSizeMin: 8,
+            referenceLine: {
+              line: {
+                valueAxis2: [{
+                  value: 0,
+                  visible: true,
+                  size: 2,
+                  type: "dotted",
+                  label: { text: "On plan", visible: true }
+                }]
+              }
+            }
           },
           valueAxis: {
             title: { visible: true, text: "Share of schedule elapsed" },
             label: { formatString: "0%" },
             axisLine: { visible: true }
           },
+          // Deviation from plan, so zero is "on plan" and the reference line
+          // below is the whole reading of the chart.
+          //
+          // The first version plotted budget-consumed here and asked the
+          // reader to judge against a 45-degree diagonal. That only works if
+          // both axes share a range, and VizFrame rescales on data binding -
+          // it produced a 0-120% x-axis against a 0-150% y-axis, so the
+          // diagonal on screen was not the diagonal in the subtitle. Two
+          // attempts to pin the ranges were overwritten by the framework.
+          // Plotting the deviation removes the dependency instead of fighting
+          // it: a horizontal line at zero cannot be rescaled into a lie.
           valueAxis2: {
-            title: { visible: true, text: "Share of budget consumed" },
+            title: { visible: true, text: "Burning faster than schedule" },
             label: { formatString: "0%" }
           },
           // Without this the size legend prints raw euros - "690,327,297.27"

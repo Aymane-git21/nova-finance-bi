@@ -6,6 +6,34 @@
   <title>NovaSpace Finance Cockpit</title>
 
   <!--
+    height:100% only resolves against a parent that has a height. Without this
+    block html and body compute to 0px, the whole app renders into a
+    zero-height box, and the page is blank while the DOM is completely correct.
+
+    That failure mode is worth knowing because it defeats the obvious check:
+    innerText, element counts and querySelectorAll all pass on a zero-height
+    tree. Verifying the DOM is not verifying the rendering - only geometry is.
+
+    Inline rather than in css/style.css: the manifest loads that stylesheet
+    after the component initialises, which is too late to size the container
+    the component is rendering into.
+  -->
+  <!--
+    Setting html/body alone is not enough. UI5 inserts three more elements
+    between the container and the view - ComponentContainer, UIArea, XMLView -
+    and each is a plain static div that does NOT inherit height. sap.m.Page
+    then positions its content against an offset parent of 0px and paints
+    nothing. Every link in the chain has to be sized.
+  -->
+  <style>
+    html, body { height: 100%; margin: 0; padding: 0; }
+    #nsContent,
+    #nsContent > .sapUiComponentContainer,
+    #nsContent .sapUiComponentContainer > div,
+    #nsContent .sapUiView { height: 100%; }
+  </style>
+
+  <!--
     UI5 from the CDN, and the app reads frozen JSON rather than a live service.
     That combination is the entire permanence strategy: this page opens with no
     database, no service, no container and no network beyond the CDN. Trials
@@ -31,10 +59,10 @@
   </script>
 </head>
 <body class="sapUiBody">
-  <div data-sap-ui-component
+  <div id="nsContent"
+       data-sap-ui-component
        data-name="novaspace.cockpit"
        data-id="container"
-       data-settings='{"id": "novaspace-cockpit"}'
-       style="height: 100%"></div>
+       data-settings='{"id": "novaspace-cockpit"}'></div>
 </body>
 </html>

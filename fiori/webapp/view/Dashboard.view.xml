@@ -69,10 +69,10 @@
       </headerToolbar>
       <content>
         <!--
-          Hand-written sap.viz, not a generated chart. The bubble plot is the
+          Hand-written sap.viz, not a generated chart. A bubble plot is the
           right form here because it puts two ratios and a magnitude on one
-          picture: the diagonal is "on plan", and distance above it is the
-          finding.
+          picture: how far through the schedule, how far ahead of it the spend
+          is running, and how large the programme is.
         -->
         <viz:VizFrame id="burnChart"
                       vizType="bubble"
@@ -86,25 +86,26 @@
               </vizData:dimensions>
               <vizData:measures>
                 <vizData:MeasureDefinition name="Schedule elapsed"  value="{programmeBurn>timeElapsed}"/>
-                <vizData:MeasureDefinition name="Budget consumed"   value="{programmeBurn>budgetConsumed}"/>
+                <vizData:MeasureDefinition name="Burn ahead of schedule" value="{programmeBurn>burnAhead}"/>
                 <vizData:MeasureDefinition name="Budget"            value="{programmeBurn>budget}"/>
               </vizData:measures>
             </vizData:FlattenedDataset>
           </viz:dataset>
           <viz:feeds>
             <vizFeeds:FeedItem uid="valueAxis"  type="Measure"   values="Schedule elapsed"/>
-            <vizFeeds:FeedItem uid="valueAxis2" type="Measure"   values="Budget consumed"/>
+            <vizFeeds:FeedItem uid="valueAxis2" type="Measure"   values="Burn ahead of schedule"/>
             <vizFeeds:FeedItem uid="bubbleWidth" type="Measure"  values="Budget"/>
             <vizFeeds:FeedItem uid="color"      type="Dimension" values="Programme"/>
           </viz:feeds>
         </viz:VizFrame>
 
-        <!-- The chart cannot draw its own diagonal, so the reading is stated. -->
+        <!-- The finding, stated. A chart should not need a caption to be
+             read, but the number is worth having in text for a screenshot. -->
         <MessageStrip
           class="nsStrip"
           type="Warning"
           showIcon="true"
-          text="{= ${kpi>/worstProgramme} + ' sits above the diagonal: ' + Math.round(${programmeBurn>/0/budgetConsumed} * 100) + ' % of budget spent against ' + Math.round(${programmeBurn>/0/timeElapsed} * 100) + ' % of schedule elapsed. Its estimate at completion is ' + Math.round(${kpi>/worstProgrammeEac} * 100) + ' % of budget.' }"/>
+          text="{= ${kpi>/worstProgramme} + ' is ' + Math.round(${programmeBurn>/0/burnAhead} * 100) + ' points above the line: ' + Math.round(${programmeBurn>/0/budgetConsumed} * 100) + ' % of budget spent against ' + Math.round(${programmeBurn>/0/timeElapsed} * 100) + ' % of schedule elapsed. Its estimate at completion is ' + Math.round(${kpi>/worstProgrammeEac} * 100) + ' % of budget.' }"/>
 
         <Table id="programmeTable"
                items="{programmeBurn>/}"

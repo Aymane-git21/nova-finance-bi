@@ -74,6 +74,20 @@ def main() -> int:
             "lead": r["LEAD_COMPANY_CODE"],
             "timeElapsed": number(r["PCT_TIME_ELAPSED"]),
             "budgetConsumed": number(r["PCT_BUDGET_CONSUMED"]),
+            # Deviation from plan, plotted directly rather than left as a
+            # diagonal for the reader to hold in their head. Positive means
+            # burning faster than the calendar.
+            #
+            # This started as budget-consumed on the y-axis with "on plan" as
+            # the 45-degree diagonal, which is the classic form and depends on
+            # both axes sharing a range. VizFrame recomputes its scale when
+            # data binds and ran them to 120% and 150% - so the diagonal the
+            # subtitle told the reader to look for was not the diagonal on
+            # screen. Plotting the deviation makes "on plan" a horizontal line
+            # at zero, which is unambiguous and cannot be rescaled into a lie.
+            "burnAhead": round(
+                number(r["PCT_BUDGET_CONSUMED"]) - number(r["PCT_TIME_ELAPSED"]), 4
+            ),
             "budget": number(r["TOTAL_BUDGET"]),
             "actuals": number(r["ACTUALS_TO_DATE"]),
             "eac": number(r["EAC"]),
