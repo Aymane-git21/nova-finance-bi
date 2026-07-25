@@ -331,13 +331,13 @@ This phase is why you get *this* job rather than a developer job. Each document 
 
 # PHASE 9 — Packaging & presentation (Weekend 6, part 2)
 
-- [ ] **README.md** — the 90-second pitch: problem statement, architecture diagram (Mermaid), tech list mapped explicitly to the job requirements ("BW4HANA developments → L1/L2/L3 modeling + mapping doc", "ABAP → AMDP + CDS stack", ...), demo links (GitHub Pages app, SAC video), and the honest-constraints paragraph (BO/AfO from professional experience; SAC trial = import-only, see tradeoff note).
+- [x] **README.md** — the 90-second pitch: problem statement, architecture diagram (Mermaid), tech list mapped explicitly to the job requirements ("BW4HANA developments → L1/L2/L3 modeling + mapping doc", "ABAP → AMDP + CDS stack", ...), demo links (GitHub Pages app, SAC video), and the honest-constraints paragraph (BO/AfO from professional experience; SAC trial = import-only, see tradeoff note).
 - [ ] Record a **7–10 min full walkthrough video** (architecture → data → HANA → CDS/OData → Fiori → SAC → docs). Unlisted YouTube. This is what you send with applications.
-- [ ] **CV/LinkedIn bullet** drafted, e.g.: *"Built an end-to-end SAP analytics product (HANA Cloud, ABAP CDS/AMDP, OData V4, Fiori Elements, SAC reporting & planning) for space-programme financial controlling and month-end close monitoring, incl. performance/eco-design benchmarking and full BI governance documentation."*
-- [ ] **Interview prep sheet** (private, not in repo): 5 stories in STAR format hung on project artifacts, incl. one on the JV angle — carving a BI landscape out of a parent company (system separation, authorizations, data ownership, export-control classification of reports) — directly relevant to the September 2026 Space JV context of this position.
-- [ ] Final pass: every doc linked from README, dead trials labelled, licence present, repo public.
+- [x] **CV/LinkedIn bullet** drafted, e.g.: *"Built an end-to-end SAP analytics product (HANA Cloud, ABAP CDS/AMDP, OData V4, Fiori Elements, SAC reporting & planning) for space-programme financial controlling and month-end close monitoring, incl. performance/eco-design benchmarking and full BI governance documentation."*
+- [x] **Interview prep sheet** (private, not in repo): 5 stories in STAR format hung on project artifacts, incl. one on the JV angle — carving a BI landscape out of a parent company (system separation, authorizations, data ownership, export-control classification of reports) — directly relevant to the September 2026 Space JV context of this position.
+- [x] Final pass: every doc linked from README, dead trials labelled, licence present, repo public.
 
-**Deliverable:** the finished, sendable portfolio.
+**Deliverable:** the finished, sendable portfolio. ✅ **Done.** README rewritten as the pitch with a requirements-to-evidence table that keeps its three honest gaps visible; `docs/walkthrough-script.md` shot by shot for recording; CV bullet and five STAR stories in a git-ignored `interview-prep.md`. Live demo: https://aymane-git21.github.io/nova-finance-bi/
 
 ---
 

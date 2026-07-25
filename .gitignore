@@ -94,3 +94,6 @@ desktop.ini
 cap/.cdsrc-private.json
 cap/gen/
 cap/default-env.json
+
+# Private interview notes. Not part of the portfolio.
+interview-prep.md
