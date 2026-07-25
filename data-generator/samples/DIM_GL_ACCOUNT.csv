@@ -1,0 +1,151 @@
+gl_account,gl_account_name,account_group,account_group_name,pl_section,is_pl_account,normal_balance
+400000,Contract revenue — Engineering,REV,Revenue,REVENUE,true,H
+400010,Milestone revenue — Engineering,REV,Revenue,REVENUE,true,H
+400020,Service revenue — Engineering,REV,Revenue,REVENUE,true,H
+400030,Licence income — Engineering,REV,Revenue,REVENUE,true,H
+400040,Study revenue — Engineering,REV,Revenue,REVENUE,true,H
+400050,Spare parts revenue — Engineering,REV,Revenue,REVENUE,true,H
+400060,Maintenance revenue — Engineering,REV,Revenue,REVENUE,true,H
+400070,Contract revenue — Manufacturing,REV,Revenue,REVENUE,true,H
+400080,Milestone revenue — Manufacturing,REV,Revenue,REVENUE,true,H
+400090,Service revenue — Manufacturing,REV,Revenue,REVENUE,true,H
+400100,Licence income — Manufacturing,REV,Revenue,REVENUE,true,H
+400110,Study revenue — Manufacturing,REV,Revenue,REVENUE,true,H
+400120,Spare parts revenue — Manufacturing,REV,Revenue,REVENUE,true,H
+400130,Maintenance revenue — Manufacturing,REV,Revenue,REVENUE,true,H
+400140,Contract revenue — Programmes,REV,Revenue,REVENUE,true,H
+500000,Raw materials — Engineering,MAT,Material,COST_OF_SALES,true,S
+500010,Electronic components — Engineering,MAT,Material,COST_OF_SALES,true,S
+500020,Structural parts — Engineering,MAT,Material,COST_OF_SALES,true,S
+500030,Propellant — Engineering,MAT,Material,COST_OF_SALES,true,S
+500040,Consumables — Engineering,MAT,Material,COST_OF_SALES,true,S
+500050,Test equipment — Engineering,MAT,Material,COST_OF_SALES,true,S
+500060,Packaging — Engineering,MAT,Material,COST_OF_SALES,true,S
+500070,Raw materials — Manufacturing,MAT,Material,COST_OF_SALES,true,S
+500080,Electronic components — Manufacturing,MAT,Material,COST_OF_SALES,true,S
+500090,Structural parts — Manufacturing,MAT,Material,COST_OF_SALES,true,S
+500100,Propellant — Manufacturing,MAT,Material,COST_OF_SALES,true,S
+500110,Consumables — Manufacturing,MAT,Material,COST_OF_SALES,true,S
+500120,Test equipment — Manufacturing,MAT,Material,COST_OF_SALES,true,S
+500130,Packaging — Manufacturing,MAT,Material,COST_OF_SALES,true,S
+500140,Raw materials — Programmes,MAT,Material,COST_OF_SALES,true,S
+500150,Electronic components — Programmes,MAT,Material,COST_OF_SALES,true,S
+500160,Structural parts — Programmes,MAT,Material,COST_OF_SALES,true,S
+500170,Propellant — Programmes,MAT,Material,COST_OF_SALES,true,S
+500180,Consumables — Programmes,MAT,Material,COST_OF_SALES,true,S
+500190,Test equipment — Programmes,MAT,Material,COST_OF_SALES,true,S
+500200,Packaging — Programmes,MAT,Material,COST_OF_SALES,true,S
+500210,Raw materials — Operations,MAT,Material,COST_OF_SALES,true,S
+500220,Electronic components — Operations,MAT,Material,COST_OF_SALES,true,S
+500230,Structural parts — Operations,MAT,Material,COST_OF_SALES,true,S
+500240,Propellant — Operations,MAT,Material,COST_OF_SALES,true,S
+600000,Salaries — Engineering,PER,Personnel,COST_OF_SALES,true,S
+600010,Social charges — Engineering,PER,Personnel,COST_OF_SALES,true,S
+600020,Bonus provision — Engineering,PER,Personnel,COST_OF_SALES,true,S
+600030,Pension cost — Engineering,PER,Personnel,COST_OF_SALES,true,S
+600040,Travel allowance — Engineering,PER,Personnel,COST_OF_SALES,true,S
+600050,Training cost — Engineering,PER,Personnel,COST_OF_SALES,true,S
+600060,Temporary staff — Engineering,PER,Personnel,COST_OF_SALES,true,S
+600070,Salaries — Manufacturing,PER,Personnel,COST_OF_SALES,true,S
+600080,Social charges — Manufacturing,PER,Personnel,COST_OF_SALES,true,S
+600090,Bonus provision — Manufacturing,PER,Personnel,COST_OF_SALES,true,S
+600100,Pension cost — Manufacturing,PER,Personnel,COST_OF_SALES,true,S
+600110,Travel allowance — Manufacturing,PER,Personnel,COST_OF_SALES,true,S
+600120,Training cost — Manufacturing,PER,Personnel,COST_OF_SALES,true,S
+600130,Temporary staff — Manufacturing,PER,Personnel,COST_OF_SALES,true,S
+600140,Salaries — Programmes,PER,Personnel,COST_OF_SALES,true,S
+600150,Social charges — Programmes,PER,Personnel,COST_OF_SALES,true,S
+600160,Bonus provision — Programmes,PER,Personnel,COST_OF_SALES,true,S
+600170,Pension cost — Programmes,PER,Personnel,COST_OF_SALES,true,S
+600180,Travel allowance — Programmes,PER,Personnel,COST_OF_SALES,true,S
+600190,Training cost — Programmes,PER,Personnel,COST_OF_SALES,true,S
+600200,Temporary staff — Programmes,PER,Personnel,COST_OF_SALES,true,S
+600210,Salaries — Operations,PER,Personnel,COST_OF_SALES,true,S
+600220,Social charges — Operations,PER,Personnel,COST_OF_SALES,true,S
+600230,Bonus provision — Operations,PER,Personnel,COST_OF_SALES,true,S
+600240,Pension cost — Operations,PER,Personnel,COST_OF_SALES,true,S
+600250,Travel allowance — Operations,PER,Personnel,COST_OF_SALES,true,S
+600260,Training cost — Operations,PER,Personnel,COST_OF_SALES,true,S
+600270,Temporary staff — Operations,PER,Personnel,COST_OF_SALES,true,S
+600280,Salaries — Corporate,PER,Personnel,COST_OF_SALES,true,S
+600290,Social charges — Corporate,PER,Personnel,COST_OF_SALES,true,S
+610000,Engineering subcontracting — Engineering,SUB,Subcontracting,COST_OF_SALES,true,S
+610010,Manufacturing subcontracting — Engineering,SUB,Subcontracting,COST_OF_SALES,true,S
+610020,Test services — Engineering,SUB,Subcontracting,COST_OF_SALES,true,S
+610030,Consultancy — Engineering,SUB,Subcontracting,COST_OF_SALES,true,S
+610040,Software development services — Engineering,SUB,Subcontracting,COST_OF_SALES,true,S
+610050,Launch services — Engineering,SUB,Subcontracting,COST_OF_SALES,true,S
+610060,Engineering subcontracting — Manufacturing,SUB,Subcontracting,COST_OF_SALES,true,S
+610070,Manufacturing subcontracting — Manufacturing,SUB,Subcontracting,COST_OF_SALES,true,S
+610080,Test services — Manufacturing,SUB,Subcontracting,COST_OF_SALES,true,S
+610090,Consultancy — Manufacturing,SUB,Subcontracting,COST_OF_SALES,true,S
+610100,Software development services — Manufacturing,SUB,Subcontracting,COST_OF_SALES,true,S
+610110,Launch services — Manufacturing,SUB,Subcontracting,COST_OF_SALES,true,S
+610120,Engineering subcontracting — Programmes,SUB,Subcontracting,COST_OF_SALES,true,S
+610130,Manufacturing subcontracting — Programmes,SUB,Subcontracting,COST_OF_SALES,true,S
+610140,Test services — Programmes,SUB,Subcontracting,COST_OF_SALES,true,S
+610150,Consultancy — Programmes,SUB,Subcontracting,COST_OF_SALES,true,S
+610160,Software development services — Programmes,SUB,Subcontracting,COST_OF_SALES,true,S
+610170,Launch services — Programmes,SUB,Subcontracting,COST_OF_SALES,true,S
+610180,Engineering subcontracting — Operations,SUB,Subcontracting,COST_OF_SALES,true,S
+610190,Manufacturing subcontracting — Operations,SUB,Subcontracting,COST_OF_SALES,true,S
+650000,Facility cost — Engineering,OVH,Overhead,OPERATING_EXPENSES,true,S
+650010,Utilities — Engineering,OVH,Overhead,OPERATING_EXPENSES,true,S
+650020,Insurance — Engineering,OVH,Overhead,OPERATING_EXPENSES,true,S
+650030,IT services — Engineering,OVH,Overhead,OPERATING_EXPENSES,true,S
+650040,Telecom — Engineering,OVH,Overhead,OPERATING_EXPENSES,true,S
+650050,Maintenance & repair — Engineering,OVH,Overhead,OPERATING_EXPENSES,true,S
+650060,Office supplies — Engineering,OVH,Overhead,OPERATING_EXPENSES,true,S
+650070,Professional fees — Engineering,OVH,Overhead,OPERATING_EXPENSES,true,S
+650080,Facility cost — Manufacturing,OVH,Overhead,OPERATING_EXPENSES,true,S
+650090,Utilities — Manufacturing,OVH,Overhead,OPERATING_EXPENSES,true,S
+650100,Insurance — Manufacturing,OVH,Overhead,OPERATING_EXPENSES,true,S
+650110,IT services — Manufacturing,OVH,Overhead,OPERATING_EXPENSES,true,S
+650120,Telecom — Manufacturing,OVH,Overhead,OPERATING_EXPENSES,true,S
+650130,Maintenance & repair — Manufacturing,OVH,Overhead,OPERATING_EXPENSES,true,S
+650140,Office supplies — Manufacturing,OVH,Overhead,OPERATING_EXPENSES,true,S
+650150,Professional fees — Manufacturing,OVH,Overhead,OPERATING_EXPENSES,true,S
+650160,Facility cost — Programmes,OVH,Overhead,OPERATING_EXPENSES,true,S
+650170,Utilities — Programmes,OVH,Overhead,OPERATING_EXPENSES,true,S
+650180,Insurance — Programmes,OVH,Overhead,OPERATING_EXPENSES,true,S
+650190,IT services — Programmes,OVH,Overhead,OPERATING_EXPENSES,true,S
+650200,Telecom — Programmes,OVH,Overhead,OPERATING_EXPENSES,true,S
+650210,Maintenance & repair — Programmes,OVH,Overhead,OPERATING_EXPENSES,true,S
+650220,Office supplies — Programmes,OVH,Overhead,OPERATING_EXPENSES,true,S
+650230,Professional fees — Programmes,OVH,Overhead,OPERATING_EXPENSES,true,S
+650240,Facility cost — Operations,OVH,Overhead,OPERATING_EXPENSES,true,S
+650250,Utilities — Operations,OVH,Overhead,OPERATING_EXPENSES,true,S
+650260,Insurance — Operations,OVH,Overhead,OPERATING_EXPENSES,true,S
+650270,IT services — Operations,OVH,Overhead,OPERATING_EXPENSES,true,S
+650280,Telecom — Operations,OVH,Overhead,OPERATING_EXPENSES,true,S
+650290,Maintenance & repair — Operations,OVH,Overhead,OPERATING_EXPENSES,true,S
+680000,Depreciation buildings — Engineering,DEP,Depreciation,OPERATING_EXPENSES,true,S
+680010,Depreciation machinery — Engineering,DEP,Depreciation,OPERATING_EXPENSES,true,S
+680020,Depreciation test rigs — Engineering,DEP,Depreciation,OPERATING_EXPENSES,true,S
+680030,Depreciation IT hardware — Engineering,DEP,Depreciation,OPERATING_EXPENSES,true,S
+680040,Amortisation software — Engineering,DEP,Depreciation,OPERATING_EXPENSES,true,S
+680050,Depreciation buildings — Manufacturing,DEP,Depreciation,OPERATING_EXPENSES,true,S
+680060,Depreciation machinery — Manufacturing,DEP,Depreciation,OPERATING_EXPENSES,true,S
+680070,Depreciation test rigs — Manufacturing,DEP,Depreciation,OPERATING_EXPENSES,true,S
+680080,Depreciation IT hardware — Manufacturing,DEP,Depreciation,OPERATING_EXPENSES,true,S
+680090,Amortisation software — Manufacturing,DEP,Depreciation,OPERATING_EXPENSES,true,S
+680100,Depreciation buildings — Programmes,DEP,Depreciation,OPERATING_EXPENSES,true,S
+680110,Depreciation machinery — Programmes,DEP,Depreciation,OPERATING_EXPENSES,true,S
+680120,Depreciation test rigs — Programmes,DEP,Depreciation,OPERATING_EXPENSES,true,S
+680130,Depreciation IT hardware — Programmes,DEP,Depreciation,OPERATING_EXPENSES,true,S
+680140,Amortisation software — Programmes,DEP,Depreciation,OPERATING_EXPENSES,true,S
+690000,Other operating expense — Engineering,OTH,Other operating,OTHER,true,S
+690010,Currency loss — Engineering,OTH,Other operating,OTHER,true,S
+690020,Write-off — Engineering,OTH,Other operating,OTHER,true,S
+690030,Provision movement — Engineering,OTH,Other operating,OTHER,true,S
+690040,Miscellaneous cost — Engineering,OTH,Other operating,OTHER,true,S
+690050,Other operating expense — Manufacturing,OTH,Other operating,OTHER,true,S
+690060,Currency loss — Manufacturing,OTH,Other operating,OTHER,true,S
+690070,Write-off — Manufacturing,OTH,Other operating,OTHER,true,S
+690080,Provision movement — Manufacturing,OTH,Other operating,OTHER,true,S
+690090,Miscellaneous cost — Manufacturing,OTH,Other operating,OTHER,true,S
+690100,Other operating expense — Programmes,OTH,Other operating,OTHER,true,S
+690110,Currency loss — Programmes,OTH,Other operating,OTHER,true,S
+690120,Write-off — Programmes,OTH,Other operating,OTHER,true,S
+690130,Provision movement — Programmes,OTH,Other operating,OTHER,true,S
+690140,Miscellaneous cost — Programmes,OTH,Other operating,OTHER,true,S

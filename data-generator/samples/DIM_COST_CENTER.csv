@@ -1,0 +1,197 @@
+cost_center,cost_center_name,company_code,division_id,division_name,department_id,department_name,parent_id,hierarchy_level,is_overhead,valid_from,valid_to,manager_user_id
+CC-10-1001,Systems Design,NS10,NS10-ENG,Engineering,NS10-ENG-01,Systems Engineering,NS10-ENG-01,3,false,2023-01-01,9999-12-31,USR-734C7E
+CC-10-1002,Requirements & V&V,NS10,NS10-ENG,Engineering,NS10-ENG-01,Systems Engineering,NS10-ENG-01,3,false,2023-01-01,9999-12-31,USR-B7AC97
+CC-10-1003,Mission Analysis,NS10,NS10-ENG,Engineering,NS10-ENG-01,Systems Engineering,NS10-ENG-01,3,false,2023-01-01,9999-12-31,USR-A4D458
+CC-10-1004,Avionics Integration,NS10,NS10-ENG,Engineering,NS10-ENG-01,Systems Engineering,NS10-ENG-01,3,false,2023-01-01,9999-12-31,USR-8362D1
+CC-10-1005,Onboard Software,NS10,NS10-ENG,Engineering,NS10-ENG-02,Avionics & Software,NS10-ENG-02,3,false,2023-01-01,9999-12-31,USR-20CC0E
+CC-10-1006,Simulation & Test Bench,NS10,NS10-ENG,Engineering,NS10-ENG-02,Avionics & Software,NS10-ENG-02,3,false,2023-01-01,9999-12-31,USR-734C7E
+CC-10-1007,Structural Analysis,NS10,NS10-ENG,Engineering,NS10-ENG-02,Avionics & Software,NS10-ENG-02,3,false,2023-01-01,9999-12-31,USR-8362D1
+CC-10-1008,Thermal Control,NS10,NS10-ENG,Engineering,NS10-ENG-02,Avionics & Software,NS10-ENG-02,3,false,2023-01-01,9999-12-31,USR-8362D1
+CC-10-1009,Mechanisms,NS10,NS10-ENG,Engineering,NS10-ENG-03,Structures & Thermal,NS10-ENG-03,3,false,2023-01-01,9999-12-31,USR-ED4078
+CC-10-1010,Systems Design 2,NS10,NS10-ENG,Engineering,NS10-ENG-03,Structures & Thermal,NS10-ENG-03,3,false,2023-01-01,9999-12-31,USR-181C01
+CC-10-1011,Requirements & V&V 2,NS10,NS10-ENG,Engineering,NS10-ENG-03,Structures & Thermal,NS10-ENG-03,3,false,2023-01-01,9999-12-31,USR-D6F9BD
+CC-10-1012,Mission Analysis 2,NS10,NS10-ENG,Engineering,NS10-ENG-03,Structures & Thermal,NS10-ENG-03,3,false,2023-01-01,9999-12-31,USR-16D926
+CC-10-1013,Cleanroom AIT,NS10,NS10-MFG,Manufacturing,NS10-MFG-01,Assembly Integration & Test,NS10-MFG-01,3,false,2023-01-01,9999-12-31,USR-718397
+CC-10-1014,Environmental Test,NS10,NS10-MFG,Manufacturing,NS10-MFG-01,Assembly Integration & Test,NS10-MFG-01,3,false,2023-01-01,9999-12-31,USR-160088
+CC-10-1015,Harness Manufacturing,NS10,NS10-MFG,Manufacturing,NS10-MFG-01,Assembly Integration & Test,NS10-MFG-01,3,false,2023-01-01,9999-12-31,USR-339381
+CC-10-1016,CNC Machining,NS10,NS10-MFG,Manufacturing,NS10-MFG-01,Assembly Integration & Test,NS10-MFG-01,3,false,2023-01-01,9999-12-31,USR-BC5A44
+CC-10-1017,Composite Layup,NS10,NS10-MFG,Manufacturing,NS10-MFG-02,Machining & Composites,NS10-MFG-02,3,false,2023-01-01,9999-12-31,USR-C621FB
+CC-10-1018,Surface Treatment,NS10,NS10-MFG,Manufacturing,NS10-MFG-02,Machining & Composites,NS10-MFG-02,3,false,2023-01-01,9999-12-31,USR-B286B6
+CC-10-1019,Cleanroom AIT 2,NS10,NS10-MFG,Manufacturing,NS10-MFG-02,Machining & Composites,NS10-MFG-02,3,false,2023-01-01,9999-12-31,USR-C814CE
+CC-10-1020,Environmental Test 2,NS10,NS10-MFG,Manufacturing,NS10-MFG-02,Machining & Composites,NS10-MFG-02,3,false,2023-01-01,9999-12-31,USR-C621FB
+CC-10-1021,Harness Manufacturing 2,NS10,NS10-MFG,Manufacturing,NS10-MFG-02,Machining & Composites,NS10-MFG-02,3,false,2023-01-01,9999-12-31,USR-A4D458
+CC-10-1022,Programme Office,NS10,NS10-PRG,Programmes & Projects,NS10-PRG-01,Programme Management,NS10-PRG-01,3,false,2023-01-01,9999-12-31,USR-339381
+CC-10-1023,Planning & Scheduling,NS10,NS10-PRG,Programmes & Projects,NS10-PRG-01,Programme Management,NS10-PRG-01,3,false,2023-01-01,9999-12-31,USR-C2DA0D
+CC-10-1024,Risk Management,NS10,NS10-PRG,Programmes & Projects,NS10-PRG-01,Programme Management,NS10-PRG-01,3,false,2023-01-01,9999-12-31,USR-734C7E
+CC-10-1025,Configuration Control,NS10,NS10-PRG,Programmes & Projects,NS10-PRG-02,Configuration & Quality,NS10-PRG-02,3,false,2023-01-01,9999-12-31,USR-C93B82
+CC-10-1026,Product Assurance,NS10,NS10-PRG,Programmes & Projects,NS10-PRG-02,Configuration & Quality,NS10-PRG-02,3,false,2023-01-01,9999-12-31,USR-ED4078
+CC-10-1027,Quality Inspection,NS10,NS10-PRG,Programmes & Projects,NS10-PRG-02,Configuration & Quality,NS10-PRG-02,3,false,2023-01-01,9999-12-31,USR-718397
+CC-10-1028,Procurement,NS10,NS10-PRG,Programmes & Projects,NS10-PRG-02,Configuration & Quality,NS10-PRG-02,3,false,2023-01-01,9999-12-31,USR-734C7E
+CC-10-1029,Supplier Development,NS10,NS10-PRG,Programmes & Projects,NS10-PRG-03,Supply Chain,NS10-PRG-03,3,false,2023-01-01,9999-12-31,USR-BC5A44
+CC-10-1030,Logistics,NS10,NS10-PRG,Programmes & Projects,NS10-PRG-03,Supply Chain,NS10-PRG-03,3,false,2023-01-01,9999-12-31,USR-C814CE
+CC-10-1031,Programme Office 2,NS10,NS10-PRG,Programmes & Projects,NS10-PRG-03,Supply Chain,NS10-PRG-03,3,false,2023-01-01,9999-12-31,USR-181C01
+CC-10-1032,Planning & Scheduling 2,NS10,NS10-PRG,Programmes & Projects,NS10-PRG-03,Supply Chain,NS10-PRG-03,3,false,2023-01-01,9999-12-31,USR-DBCD12
+CC-10-1033,Mission Control,NS10,NS10-OPS,Operations & Ground,NS10-OPS-01,Ground Segment Operations,NS10-OPS-01,3,false,2023-01-01,9999-12-31,USR-705A56
+CC-10-1034,Ground Station Network,NS10,NS10-OPS,Operations & Ground,NS10-OPS-01,Ground Segment Operations,NS10-OPS-01,3,false,2023-01-01,9999-12-31,USR-A791FF
+CC-10-1035,Flight Dynamics,NS10,NS10-OPS,Operations & Ground,NS10-OPS-01,Ground Segment Operations,NS10-OPS-01,3,false,2023-01-01,9999-12-31,USR-ED4078
+CC-10-1036,Launch Site Support,NS10,NS10-OPS,Operations & Ground,NS10-OPS-02,Launch Campaign Support,NS10-OPS-02,3,false,2023-01-01,9999-12-31,USR-5EEC9E
+CC-10-1037,Transport & Handling,NS10,NS10-OPS,Operations & Ground,NS10-OPS-02,Launch Campaign Support,NS10-OPS-02,3,false,2023-01-01,9999-12-31,USR-5EEC9E
+CC-10-1038,Mission Control 2,NS10,NS10-OPS,Operations & Ground,NS10-OPS-02,Launch Campaign Support,NS10-OPS-02,3,false,2023-01-01,9999-12-31,USR-6EDA16
+CC-10-1039,Ground Station Network 2,NS10,NS10-OPS,Operations & Ground,NS10-OPS-02,Launch Campaign Support,NS10-OPS-02,3,false,2023-01-01,9999-12-31,USR-D2A081
+CC-10-1040,Financial Accounting,NS10,NS10-COR,Corporate Functions,NS10-COR-01,Finance & Controlling,NS10-COR-01,3,true,2023-01-01,9999-12-31,USR-C93B82
+CC-10-1041,Management Control,NS10,NS10-COR,Corporate Functions,NS10-COR-01,Finance & Controlling,NS10-COR-01,3,true,2023-01-01,9999-12-31,USR-B7AC97
+CC-10-1042,Treasury,NS10,NS10-COR,Corporate Functions,NS10-COR-01,Finance & Controlling,NS10-COR-01,3,true,2023-01-01,9999-12-31,USR-801710
+CC-10-1043,HR Operations,NS10,NS10-COR,Corporate Functions,NS10-COR-02,Human Resources,NS10-COR-02,3,true,2023-01-01,9999-12-31,USR-6EDA16
+CC-10-1044,Talent & Training,NS10,NS10-COR,Corporate Functions,NS10-COR-02,Human Resources,NS10-COR-02,3,true,2023-01-01,9999-12-31,USR-F9C262
+CC-10-1045,IT Infrastructure,NS10,NS10-COR,Corporate Functions,NS10-COR-02,Human Resources,NS10-COR-02,3,true,2023-01-01,9999-12-31,USR-B286B6
+CC-10-1046,Business Applications,NS10,NS10-COR,Corporate Functions,NS10-COR-02,Human Resources,NS10-COR-02,3,true,2023-01-01,9999-12-31,USR-181C01
+CC-10-1047,Cyber Security,NS10,NS10-COR,Corporate Functions,NS10-COR-03,IT & Digital,NS10-COR-03,3,true,2023-01-01,9999-12-31,USR-D6F9BD
+CC-10-1048,Financial Accounting 2,NS10,NS10-COR,Corporate Functions,NS10-COR-03,IT & Digital,NS10-COR-03,3,true,2023-01-01,9999-12-31,USR-86C753
+CC-10-1049,Management Control 2,NS10,NS10-COR,Corporate Functions,NS10-COR-03,IT & Digital,NS10-COR-03,3,true,2023-01-01,9999-12-31,USR-8BA13E
+CC-10-1050,Treasury 2,NS10,NS10-COR,Corporate Functions,NS10-COR-03,IT & Digital,NS10-COR-03,3,true,2023-01-01,9999-12-31,USR-A791FF
+CC-20-1001,Systems Design,NS20,NS20-ENG,Engineering,NS20-ENG-01,Systems Engineering,NS20-ENG-01,3,false,2023-01-01,9999-12-31,USR-2A4C73
+CC-20-1002,Requirements & V&V,NS20,NS20-ENG,Engineering,NS20-ENG-01,Systems Engineering,NS20-ENG-01,3,false,2023-01-01,9999-12-31,USR-BE4DE2
+CC-20-1003,Mission Analysis,NS20,NS20-ENG,Engineering,NS20-ENG-01,Systems Engineering,NS20-ENG-01,3,false,2023-01-01,9999-12-31,USR-2A4C73
+CC-20-1004,Avionics Integration,NS20,NS20-ENG,Engineering,NS20-ENG-02,Avionics & Software,NS20-ENG-02,3,false,2023-01-01,9999-12-31,USR-277F84
+CC-20-1005,Onboard Software,NS20,NS20-ENG,Engineering,NS20-ENG-02,Avionics & Software,NS20-ENG-02,3,false,2023-01-01,9999-12-31,USR-5AC236
+CC-20-1006,Simulation & Test Bench,NS20,NS20-ENG,Engineering,NS20-ENG-02,Avionics & Software,NS20-ENG-02,3,false,2023-01-01,9999-12-31,USR-D3DFA2
+CC-20-1007,Structural Analysis,NS20,NS20-ENG,Engineering,NS20-ENG-02,Avionics & Software,NS20-ENG-02,3,false,2023-01-01,9999-12-31,USR-5D28F2
+CC-20-1008,Thermal Control,NS20,NS20-ENG,Engineering,NS20-ENG-03,Structures & Thermal,NS20-ENG-03,3,false,2023-01-01,9999-12-31,USR-AEDC4B
+CC-20-1009,Mechanisms,NS20,NS20-ENG,Engineering,NS20-ENG-03,Structures & Thermal,NS20-ENG-03,3,false,2023-01-01,9999-12-31,USR-D3DFA2
+CC-20-1010,Systems Design 2,NS20,NS20-ENG,Engineering,NS20-ENG-03,Structures & Thermal,NS20-ENG-03,3,false,2023-01-01,9999-12-31,USR-31D3D7
+CC-20-1011,Requirements & V&V 2,NS20,NS20-ENG,Engineering,NS20-ENG-03,Structures & Thermal,NS20-ENG-03,3,false,2023-01-01,9999-12-31,USR-777B07
+CC-20-1012,Cleanroom AIT,NS20,NS20-MFG,Manufacturing,NS20-MFG-01,Assembly Integration & Test,NS20-MFG-01,3,false,2023-01-01,9999-12-31,USR-5AC236
+CC-20-1013,Environmental Test,NS20,NS20-MFG,Manufacturing,NS20-MFG-01,Assembly Integration & Test,NS20-MFG-01,3,false,2023-01-01,9999-12-31,USR-179638
+CC-20-1014,Harness Manufacturing,NS20,NS20-MFG,Manufacturing,NS20-MFG-01,Assembly Integration & Test,NS20-MFG-01,3,false,2023-01-01,9999-12-31,USR-179638
+CC-20-1015,CNC Machining,NS20,NS20-MFG,Manufacturing,NS20-MFG-02,Machining & Composites,NS20-MFG-02,3,false,2023-01-01,9999-12-31,USR-8DF944
+CC-20-1016,Composite Layup,NS20,NS20-MFG,Manufacturing,NS20-MFG-02,Machining & Composites,NS20-MFG-02,3,false,2023-01-01,9999-12-31,USR-5AC236
+CC-20-1017,Surface Treatment,NS20,NS20-MFG,Manufacturing,NS20-MFG-02,Machining & Composites,NS20-MFG-02,3,false,2023-01-01,9999-12-31,USR-31D3D7
+CC-20-1018,Cleanroom AIT 2,NS20,NS20-MFG,Manufacturing,NS20-MFG-02,Machining & Composites,NS20-MFG-02,3,false,2023-01-01,9999-12-31,USR-DBB8FA
+CC-20-1019,Environmental Test 2,NS20,NS20-MFG,Manufacturing,NS20-MFG-02,Machining & Composites,NS20-MFG-02,3,false,2023-01-01,9999-12-31,USR-31D3D7
+CC-20-1020,Programme Office,NS20,NS20-PRG,Programmes & Projects,NS20-PRG-01,Programme Management,NS20-PRG-01,3,false,2023-01-01,9999-12-31,USR-A1B4C2
+CC-20-1021,Planning & Scheduling,NS20,NS20-PRG,Programmes & Projects,NS20-PRG-01,Programme Management,NS20-PRG-01,3,false,2023-01-01,9999-12-31,USR-721893
+CC-20-1022,Risk Management,NS20,NS20-PRG,Programmes & Projects,NS20-PRG-01,Programme Management,NS20-PRG-01,3,false,2023-01-01,9999-12-31,USR-105653
+CC-20-1023,Configuration Control,NS20,NS20-PRG,Programmes & Projects,NS20-PRG-01,Programme Management,NS20-PRG-01,3,false,2023-01-01,9999-12-31,USR-5AC236
+CC-20-1024,Product Assurance,NS20,NS20-PRG,Programmes & Projects,NS20-PRG-02,Configuration & Quality,NS20-PRG-02,3,false,2023-01-01,9999-12-31,USR-0B36B9
+CC-20-1025,Quality Inspection,NS20,NS20-PRG,Programmes & Projects,NS20-PRG-02,Configuration & Quality,NS20-PRG-02,3,false,2023-01-01,9999-12-31,USR-116334
+CC-20-1026,Procurement,NS20,NS20-PRG,Programmes & Projects,NS20-PRG-02,Configuration & Quality,NS20-PRG-02,3,false,2023-01-01,9999-12-31,USR-31D3D7
+CC-20-1027,Supplier Development,NS20,NS20-PRG,Programmes & Projects,NS20-PRG-02,Configuration & Quality,NS20-PRG-02,3,false,2023-01-01,9999-12-31,USR-C74424
+CC-20-1028,Logistics,NS20,NS20-PRG,Programmes & Projects,NS20-PRG-03,Supply Chain,NS20-PRG-03,3,false,2023-01-01,9999-12-31,USR-B35579
+CC-20-1029,Programme Office 2,NS20,NS20-PRG,Programmes & Projects,NS20-PRG-03,Supply Chain,NS20-PRG-03,3,false,2023-01-01,9999-12-31,USR-E34CBF
+CC-20-1030,Planning & Scheduling 2,NS20,NS20-PRG,Programmes & Projects,NS20-PRG-03,Supply Chain,NS20-PRG-03,3,false,2023-01-01,9999-12-31,USR-E4A395
+CC-20-1031,Risk Management 2,NS20,NS20-PRG,Programmes & Projects,NS20-PRG-03,Supply Chain,NS20-PRG-03,3,false,2023-01-01,9999-12-31,USR-179638
+CC-20-1032,Mission Control,NS20,NS20-OPS,Operations & Ground,NS20-OPS-01,Ground Segment Operations,NS20-OPS-01,3,false,2023-01-01,9999-12-31,USR-C74424
+CC-20-1033,Ground Station Network,NS20,NS20-OPS,Operations & Ground,NS20-OPS-01,Ground Segment Operations,NS20-OPS-01,3,false,2023-01-01,9999-12-31,USR-5D28F2
+CC-20-1034,Flight Dynamics,NS20,NS20-OPS,Operations & Ground,NS20-OPS-01,Ground Segment Operations,NS20-OPS-01,3,false,2023-01-01,9999-12-31,USR-B35579
+CC-20-1035,Launch Site Support,NS20,NS20-OPS,Operations & Ground,NS20-OPS-02,Launch Campaign Support,NS20-OPS-02,3,false,2023-01-01,9999-12-31,USR-105653
+CC-20-1036,Transport & Handling,NS20,NS20-OPS,Operations & Ground,NS20-OPS-02,Launch Campaign Support,NS20-OPS-02,3,false,2023-01-01,9999-12-31,USR-116334
+CC-20-1037,Mission Control 2,NS20,NS20-OPS,Operations & Ground,NS20-OPS-02,Launch Campaign Support,NS20-OPS-02,3,false,2023-01-01,9999-12-31,USR-105653
+CC-20-1038,Financial Accounting,NS20,NS20-COR,Corporate Functions,NS20-COR-01,Finance & Controlling,NS20-COR-01,3,true,2023-01-01,9999-12-31,USR-A1B4C2
+CC-20-1039,Management Control,NS20,NS20-COR,Corporate Functions,NS20-COR-01,Finance & Controlling,NS20-COR-01,3,true,2023-01-01,9999-12-31,USR-C288C5
+CC-20-1040,Treasury,NS20,NS20-COR,Corporate Functions,NS20-COR-01,Finance & Controlling,NS20-COR-01,3,true,2023-01-01,9999-12-31,USR-8DF944
+CC-20-1041,HR Operations,NS20,NS20-COR,Corporate Functions,NS20-COR-02,Human Resources,NS20-COR-02,3,true,2023-01-01,9999-12-31,USR-777B07
+CC-20-1042,Talent & Training,NS20,NS20-COR,Corporate Functions,NS20-COR-02,Human Resources,NS20-COR-02,3,true,2023-01-01,9999-12-31,USR-105653
+CC-20-1043,IT Infrastructure,NS20,NS20-COR,Corporate Functions,NS20-COR-02,Human Resources,NS20-COR-02,3,true,2023-01-01,9999-12-31,USR-46D9B9
+CC-20-1044,Business Applications,NS20,NS20-COR,Corporate Functions,NS20-COR-02,Human Resources,NS20-COR-02,3,true,2023-01-01,9999-12-31,USR-277F84
+CC-20-1045,Cyber Security,NS20,NS20-COR,Corporate Functions,NS20-COR-03,IT & Digital,NS20-COR-03,3,true,2023-01-01,9999-12-31,USR-5AC236
+CC-20-1046,Financial Accounting 2,NS20,NS20-COR,Corporate Functions,NS20-COR-03,IT & Digital,NS20-COR-03,3,true,2023-01-01,9999-12-31,USR-2A4C73
+CC-20-1047,Management Control 2,NS20,NS20-COR,Corporate Functions,NS20-COR-03,IT & Digital,NS20-COR-03,3,true,2023-01-01,9999-12-31,USR-AD8C19
+CC-20-1048,Treasury 2,NS20,NS20-COR,Corporate Functions,NS20-COR-03,IT & Digital,NS20-COR-03,3,true,2023-01-01,9999-12-31,USR-E4A395
+CC-30-1001,Systems Design,NS30,NS30-ENG,Engineering,NS30-ENG-01,Systems Engineering,NS30-ENG-01,3,false,2023-01-01,9999-12-31,USR-692D7D
+CC-30-1002,Requirements & V&V,NS30,NS30-ENG,Engineering,NS30-ENG-01,Systems Engineering,NS30-ENG-01,3,false,2023-01-01,9999-12-31,USR-C4916B
+CC-30-1003,Mission Analysis,NS30,NS30-ENG,Engineering,NS30-ENG-01,Systems Engineering,NS30-ENG-01,3,false,2023-01-01,9999-12-31,USR-768345
+CC-30-1004,Avionics Integration,NS30,NS30-ENG,Engineering,NS30-ENG-02,Avionics & Software,NS30-ENG-02,3,false,2023-01-01,9999-12-31,USR-AFBD09
+CC-30-1005,Onboard Software,NS30,NS30-ENG,Engineering,NS30-ENG-02,Avionics & Software,NS30-ENG-02,3,false,2023-01-01,9999-12-31,USR-BEA8BB
+CC-30-1006,Simulation & Test Bench,NS30,NS30-ENG,Engineering,NS30-ENG-02,Avionics & Software,NS30-ENG-02,3,false,2023-01-01,9999-12-31,USR-5DDC4B
+CC-30-1007,Structural Analysis,NS30,NS30-ENG,Engineering,NS30-ENG-02,Avionics & Software,NS30-ENG-02,3,false,2023-01-01,9999-12-31,USR-138B3A
+CC-30-1008,Thermal Control,NS30,NS30-ENG,Engineering,NS30-ENG-03,Structures & Thermal,NS30-ENG-03,3,false,2023-01-01,9999-12-31,USR-AFBD09
+CC-30-1009,Mechanisms,NS30,NS30-ENG,Engineering,NS30-ENG-03,Structures & Thermal,NS30-ENG-03,3,false,2023-01-01,9999-12-31,USR-214289
+CC-30-1010,Systems Design 2,NS30,NS30-ENG,Engineering,NS30-ENG-03,Structures & Thermal,NS30-ENG-03,3,false,2023-01-01,9999-12-31,USR-C4916B
+CC-30-1011,Requirements & V&V 2,NS30,NS30-ENG,Engineering,NS30-ENG-03,Structures & Thermal,NS30-ENG-03,3,false,2023-01-01,9999-12-31,USR-692D7D
+CC-30-1012,Cleanroom AIT,NS30,NS30-MFG,Manufacturing,NS30-MFG-01,Assembly Integration & Test,NS30-MFG-01,3,false,2023-01-01,9999-12-31,USR-3A16BB
+CC-30-1013,Environmental Test,NS30,NS30-MFG,Manufacturing,NS30-MFG-01,Assembly Integration & Test,NS30-MFG-01,3,false,2023-01-01,9999-12-31,USR-A1383B
+CC-30-1014,Harness Manufacturing,NS30,NS30-MFG,Manufacturing,NS30-MFG-01,Assembly Integration & Test,NS30-MFG-01,3,false,2023-01-01,9999-12-31,USR-138B3A
+CC-30-1015,CNC Machining,NS30,NS30-MFG,Manufacturing,NS30-MFG-01,Assembly Integration & Test,NS30-MFG-01,3,false,2023-01-01,9999-12-31,USR-C4916B
+CC-30-1016,Composite Layup,NS30,NS30-MFG,Manufacturing,NS30-MFG-02,Machining & Composites,NS30-MFG-02,3,false,2023-01-01,9999-12-31,USR-7834CF
+CC-30-1017,Surface Treatment,NS30,NS30-MFG,Manufacturing,NS30-MFG-02,Machining & Composites,NS30-MFG-02,3,false,2023-01-01,9999-12-31,USR-B34492
+CC-30-1018,Cleanroom AIT 2,NS30,NS30-MFG,Manufacturing,NS30-MFG-02,Machining & Composites,NS30-MFG-02,3,false,2023-01-01,9999-12-31,USR-214289
+CC-30-1019,Environmental Test 2,NS30,NS30-MFG,Manufacturing,NS30-MFG-02,Machining & Composites,NS30-MFG-02,3,false,2023-01-01,9999-12-31,USR-138B3A
+CC-30-1020,Programme Office,NS30,NS30-PRG,Programmes & Projects,NS30-PRG-01,Programme Management,NS30-PRG-01,3,false,2023-01-01,9999-12-31,USR-EC2AC8
+CC-30-1021,Planning & Scheduling,NS30,NS30-PRG,Programmes & Projects,NS30-PRG-01,Programme Management,NS30-PRG-01,3,false,2023-01-01,9999-12-31,USR-EC2AC8
+CC-30-1022,Risk Management,NS30,NS30-PRG,Programmes & Projects,NS30-PRG-01,Programme Management,NS30-PRG-01,3,false,2023-01-01,9999-12-31,USR-18E3D8
+CC-30-1023,Configuration Control,NS30,NS30-PRG,Programmes & Projects,NS30-PRG-01,Programme Management,NS30-PRG-01,3,false,2023-01-01,9999-12-31,USR-5487BF
+CC-30-1024,Product Assurance,NS30,NS30-PRG,Programmes & Projects,NS30-PRG-01,Programme Management,NS30-PRG-01,3,false,2023-01-01,9999-12-31,USR-692D7D
+CC-30-1025,Quality Inspection,NS30,NS30-PRG,Programmes & Projects,NS30-PRG-02,Configuration & Quality,NS30-PRG-02,3,false,2023-01-01,9999-12-31,USR-7834CF
+CC-30-1026,Procurement,NS30,NS30-PRG,Programmes & Projects,NS30-PRG-02,Configuration & Quality,NS30-PRG-02,3,false,2023-01-01,9999-12-31,USR-F7AEB7
+CC-30-1027,Supplier Development,NS30,NS30-PRG,Programmes & Projects,NS30-PRG-02,Configuration & Quality,NS30-PRG-02,3,false,2023-01-01,9999-12-31,USR-AB78EE
+CC-30-1028,Logistics,NS30,NS30-PRG,Programmes & Projects,NS30-PRG-02,Configuration & Quality,NS30-PRG-02,3,false,2023-01-01,9999-12-31,USR-F0B7E6
+CC-30-1029,Programme Office 2,NS30,NS30-PRG,Programmes & Projects,NS30-PRG-03,Supply Chain,NS30-PRG-03,3,false,2023-01-01,9999-12-31,USR-5ED672
+CC-30-1030,Planning & Scheduling 2,NS30,NS30-PRG,Programmes & Projects,NS30-PRG-03,Supply Chain,NS30-PRG-03,3,false,2023-01-01,9999-12-31,USR-AB78EE
+CC-30-1031,Risk Management 2,NS30,NS30-PRG,Programmes & Projects,NS30-PRG-03,Supply Chain,NS30-PRG-03,3,false,2023-01-01,9999-12-31,USR-6FE930
+CC-30-1032,Mission Control,NS30,NS30-OPS,Operations & Ground,NS30-OPS-01,Ground Segment Operations,NS30-OPS-01,3,false,2023-01-01,9999-12-31,USR-6FE930
+CC-30-1033,Ground Station Network,NS30,NS30-OPS,Operations & Ground,NS30-OPS-01,Ground Segment Operations,NS30-OPS-01,3,false,2023-01-01,9999-12-31,USR-7834CF
+CC-30-1034,Flight Dynamics,NS30,NS30-OPS,Operations & Ground,NS30-OPS-01,Ground Segment Operations,NS30-OPS-01,3,false,2023-01-01,9999-12-31,USR-F7AEB7
+CC-30-1035,Launch Site Support,NS30,NS30-OPS,Operations & Ground,NS30-OPS-01,Ground Segment Operations,NS30-OPS-01,3,false,2023-01-01,9999-12-31,USR-908310
+CC-30-1036,Transport & Handling,NS30,NS30-OPS,Operations & Ground,NS30-OPS-02,Launch Campaign Support,NS30-OPS-02,3,false,2023-01-01,9999-12-31,USR-4FF742
+CC-30-1037,Mission Control 2,NS30,NS30-OPS,Operations & Ground,NS30-OPS-02,Launch Campaign Support,NS30-OPS-02,3,false,2023-01-01,9999-12-31,USR-5ED672
+CC-30-1038,Ground Station Network 2,NS30,NS30-OPS,Operations & Ground,NS30-OPS-02,Launch Campaign Support,NS30-OPS-02,3,false,2023-01-01,9999-12-31,USR-BEA8BB
+CC-30-1039,Financial Accounting,NS30,NS30-COR,Corporate Functions,NS30-COR-01,Finance & Controlling,NS30-COR-01,3,true,2023-01-01,9999-12-31,USR-5487BF
+CC-30-1040,Management Control,NS30,NS30-COR,Corporate Functions,NS30-COR-01,Finance & Controlling,NS30-COR-01,3,true,2023-01-01,9999-12-31,USR-308131
+CC-30-1041,Treasury,NS30,NS30-COR,Corporate Functions,NS30-COR-01,Finance & Controlling,NS30-COR-01,3,true,2023-01-01,9999-12-31,USR-7834CF
+CC-30-1042,HR Operations,NS30,NS30-COR,Corporate Functions,NS30-COR-01,Finance & Controlling,NS30-COR-01,3,true,2023-01-01,9999-12-31,USR-A1383B
+CC-30-1043,Talent & Training,NS30,NS30-COR,Corporate Functions,NS30-COR-02,Human Resources,NS30-COR-02,3,true,2023-01-01,9999-12-31,USR-C4916B
+CC-30-1044,IT Infrastructure,NS30,NS30-COR,Corporate Functions,NS30-COR-02,Human Resources,NS30-COR-02,3,true,2023-01-01,9999-12-31,USR-7834CF
+CC-30-1045,Business Applications,NS30,NS30-COR,Corporate Functions,NS30-COR-02,Human Resources,NS30-COR-02,3,true,2023-01-01,9999-12-31,USR-E7D131
+CC-30-1046,Cyber Security,NS30,NS30-COR,Corporate Functions,NS30-COR-02,Human Resources,NS30-COR-02,3,true,2023-01-01,9999-12-31,USR-C4916B
+CC-30-1047,Financial Accounting 2,NS30,NS30-COR,Corporate Functions,NS30-COR-02,Human Resources,NS30-COR-02,3,true,2023-01-01,9999-12-31,USR-AB78EE
+CC-30-1048,Management Control 2,NS30,NS30-COR,Corporate Functions,NS30-COR-03,IT & Digital,NS30-COR-03,3,true,2023-01-01,9999-12-31,USR-138B3A
+CC-30-1049,Treasury 2,NS30,NS30-COR,Corporate Functions,NS30-COR-03,IT & Digital,NS30-COR-03,3,true,2023-01-01,9999-12-31,USR-4FF742
+CC-30-1050,HR Operations 2,NS30,NS30-COR,Corporate Functions,NS30-COR-03,IT & Digital,NS30-COR-03,3,true,2023-01-01,9999-12-31,USR-5ED672
+CC-30-1051,Talent & Training 2,NS30,NS30-COR,Corporate Functions,NS30-COR-03,IT & Digital,NS30-COR-03,3,true,2023-01-01,9999-12-31,USR-D50EFA
+CC-40-1001,Systems Design,NS40,NS40-ENG,Engineering,NS40-ENG-01,Systems Engineering,NS40-ENG-01,3,false,2023-01-01,9999-12-31,USR-3ED7DA
+CC-40-1002,Requirements & V&V,NS40,NS40-ENG,Engineering,NS40-ENG-01,Systems Engineering,NS40-ENG-01,3,false,2023-01-01,9999-12-31,USR-C973E0
+CC-40-1003,Mission Analysis,NS40,NS40-ENG,Engineering,NS40-ENG-01,Systems Engineering,NS40-ENG-01,3,false,2023-01-01,9999-12-31,USR-CE0509
+CC-40-1004,Avionics Integration,NS40,NS40-ENG,Engineering,NS40-ENG-02,Avionics & Software,NS40-ENG-02,3,false,2023-01-01,9999-12-31,USR-1D51D7
+CC-40-1005,Onboard Software,NS40,NS40-ENG,Engineering,NS40-ENG-02,Avionics & Software,NS40-ENG-02,3,false,2023-01-01,9999-12-31,USR-1D51D7
+CC-40-1006,Simulation & Test Bench,NS40,NS40-ENG,Engineering,NS40-ENG-02,Avionics & Software,NS40-ENG-02,3,false,2023-01-01,9999-12-31,USR-E5E912
+CC-40-1007,Structural Analysis,NS40,NS40-ENG,Engineering,NS40-ENG-02,Avionics & Software,NS40-ENG-02,3,false,2023-01-01,9999-12-31,USR-098A05
+CC-40-1008,Thermal Control,NS40,NS40-ENG,Engineering,NS40-ENG-03,Structures & Thermal,NS40-ENG-03,3,false,2023-01-01,9999-12-31,USR-919905
+CC-40-1009,Mechanisms,NS40,NS40-ENG,Engineering,NS40-ENG-03,Structures & Thermal,NS40-ENG-03,3,false,2023-01-01,9999-12-31,USR-098A05
+CC-40-1010,Systems Design 2,NS40,NS40-ENG,Engineering,NS40-ENG-03,Structures & Thermal,NS40-ENG-03,3,false,2023-01-01,9999-12-31,USR-3D53A8
+CC-40-1011,Requirements & V&V 2,NS40,NS40-ENG,Engineering,NS40-ENG-03,Structures & Thermal,NS40-ENG-03,3,false,2023-01-01,9999-12-31,USR-098A05
+CC-40-1012,Cleanroom AIT,NS40,NS40-MFG,Manufacturing,NS40-MFG-01,Assembly Integration & Test,NS40-MFG-01,3,false,2023-01-01,9999-12-31,USR-CBFDE0
+CC-40-1013,Environmental Test,NS40,NS40-MFG,Manufacturing,NS40-MFG-01,Assembly Integration & Test,NS40-MFG-01,3,false,2023-01-01,9999-12-31,USR-23C6D1
+CC-40-1014,Harness Manufacturing,NS40,NS40-MFG,Manufacturing,NS40-MFG-01,Assembly Integration & Test,NS40-MFG-01,3,false,2023-01-01,9999-12-31,USR-6F6A5C
+CC-40-1015,CNC Machining,NS40,NS40-MFG,Manufacturing,NS40-MFG-01,Assembly Integration & Test,NS40-MFG-01,3,false,2023-01-01,9999-12-31,USR-757B81
+CC-40-1016,Composite Layup,NS40,NS40-MFG,Manufacturing,NS40-MFG-02,Machining & Composites,NS40-MFG-02,3,false,2023-01-01,9999-12-31,USR-CE0DDE
+CC-40-1017,Surface Treatment,NS40,NS40-MFG,Manufacturing,NS40-MFG-02,Machining & Composites,NS40-MFG-02,3,false,2023-01-01,9999-12-31,USR-332D2F
+CC-40-1018,Cleanroom AIT 2,NS40,NS40-MFG,Manufacturing,NS40-MFG-02,Machining & Composites,NS40-MFG-02,3,false,2023-01-01,9999-12-31,USR-098A05
+CC-40-1019,Environmental Test 2,NS40,NS40-MFG,Manufacturing,NS40-MFG-02,Machining & Composites,NS40-MFG-02,3,false,2023-01-01,9999-12-31,USR-D7791E
+CC-40-1020,Programme Office,NS40,NS40-PRG,Programmes & Projects,NS40-PRG-01,Programme Management,NS40-PRG-01,3,false,2023-01-01,9999-12-31,USR-332D2F
+CC-40-1021,Planning & Scheduling,NS40,NS40-PRG,Programmes & Projects,NS40-PRG-01,Programme Management,NS40-PRG-01,3,false,2023-01-01,9999-12-31,USR-AEB806
+CC-40-1022,Risk Management,NS40,NS40-PRG,Programmes & Projects,NS40-PRG-01,Programme Management,NS40-PRG-01,3,false,2023-01-01,9999-12-31,USR-6F6A5C
+CC-40-1023,Configuration Control,NS40,NS40-PRG,Programmes & Projects,NS40-PRG-01,Programme Management,NS40-PRG-01,3,false,2023-01-01,9999-12-31,USR-3ED7DA
+CC-40-1024,Product Assurance,NS40,NS40-PRG,Programmes & Projects,NS40-PRG-02,Configuration & Quality,NS40-PRG-02,3,false,2023-01-01,9999-12-31,USR-6F6A5C
+CC-40-1025,Quality Inspection,NS40,NS40-PRG,Programmes & Projects,NS40-PRG-02,Configuration & Quality,NS40-PRG-02,3,false,2023-01-01,9999-12-31,USR-6331C8
+CC-40-1026,Procurement,NS40,NS40-PRG,Programmes & Projects,NS40-PRG-02,Configuration & Quality,NS40-PRG-02,3,false,2023-01-01,9999-12-31,USR-D7791E
+CC-40-1027,Supplier Development,NS40,NS40-PRG,Programmes & Projects,NS40-PRG-03,Supply Chain,NS40-PRG-03,3,false,2023-01-01,9999-12-31,USR-816F69
+CC-40-1028,Logistics,NS40,NS40-PRG,Programmes & Projects,NS40-PRG-03,Supply Chain,NS40-PRG-03,3,false,2023-01-01,9999-12-31,USR-8E3EE1
+CC-40-1029,Programme Office 2,NS40,NS40-PRG,Programmes & Projects,NS40-PRG-03,Supply Chain,NS40-PRG-03,3,false,2023-01-01,9999-12-31,USR-49CFDE
+CC-40-1030,Mission Control,NS40,NS40-OPS,Operations & Ground,NS40-OPS-01,Ground Segment Operations,NS40-OPS-01,3,false,2023-01-01,9999-12-31,USR-C7DDDB
+CC-40-1031,Ground Station Network,NS40,NS40-OPS,Operations & Ground,NS40-OPS-01,Ground Segment Operations,NS40-OPS-01,3,false,2023-01-01,9999-12-31,USR-098A05
+CC-40-1032,Flight Dynamics,NS40,NS40-OPS,Operations & Ground,NS40-OPS-01,Ground Segment Operations,NS40-OPS-01,3,false,2023-01-01,9999-12-31,USR-CE0509
+CC-40-1033,Launch Site Support,NS40,NS40-OPS,Operations & Ground,NS40-OPS-01,Ground Segment Operations,NS40-OPS-01,3,false,2023-01-01,9999-12-31,USR-49CFDE
+CC-40-1034,Transport & Handling,NS40,NS40-OPS,Operations & Ground,NS40-OPS-02,Launch Campaign Support,NS40-OPS-02,3,false,2023-01-01,9999-12-31,USR-1D51D7
+CC-40-1035,Mission Control 2,NS40,NS40-OPS,Operations & Ground,NS40-OPS-02,Launch Campaign Support,NS40-OPS-02,3,false,2023-01-01,9999-12-31,USR-757B81
+CC-40-1036,Ground Station Network 2,NS40,NS40-OPS,Operations & Ground,NS40-OPS-02,Launch Campaign Support,NS40-OPS-02,3,false,2023-01-01,9999-12-31,USR-23C6D1
+CC-40-1037,Financial Accounting,NS40,NS40-COR,Corporate Functions,NS40-COR-01,Finance & Controlling,NS40-COR-01,3,true,2023-01-01,9999-12-31,USR-1D51D7
+CC-40-1038,Management Control,NS40,NS40-COR,Corporate Functions,NS40-COR-01,Finance & Controlling,NS40-COR-01,3,true,2023-01-01,9999-12-31,USR-01E27E
+CC-40-1039,Treasury,NS40,NS40-COR,Corporate Functions,NS40-COR-01,Finance & Controlling,NS40-COR-01,3,true,2023-01-01,9999-12-31,USR-E5E912
+CC-40-1040,HR Operations,NS40,NS40-COR,Corporate Functions,NS40-COR-01,Finance & Controlling,NS40-COR-01,3,true,2023-01-01,9999-12-31,USR-3ED7DA
+CC-40-1041,Talent & Training,NS40,NS40-COR,Corporate Functions,NS40-COR-02,Human Resources,NS40-COR-02,3,true,2023-01-01,9999-12-31,USR-6F6A5C
+CC-40-1042,IT Infrastructure,NS40,NS40-COR,Corporate Functions,NS40-COR-02,Human Resources,NS40-COR-02,3,true,2023-01-01,9999-12-31,USR-A302D2
+CC-40-1043,Business Applications,NS40,NS40-COR,Corporate Functions,NS40-COR-02,Human Resources,NS40-COR-02,3,true,2023-01-01,9999-12-31,USR-6331C8
+CC-40-1044,Cyber Security,NS40,NS40-COR,Corporate Functions,NS40-COR-03,IT & Digital,NS40-COR-03,3,true,2023-01-01,9999-12-31,USR-1D51D7
+CC-40-1045,Financial Accounting 2,NS40,NS40-COR,Corporate Functions,NS40-COR-03,IT & Digital,NS40-COR-03,3,true,2023-01-01,9999-12-31,USR-6331C8
+CC-40-1046,Management Control 2,NS40,NS40-COR,Corporate Functions,NS40-COR-03,IT & Digital,NS40-COR-03,3,true,2023-01-01,9999-12-31,USR-A302D2
+CC-40-1047,Treasury 2,NS40,NS40-COR,Corporate Functions,NS40-COR-03,IT & Digital,NS40-COR-03,3,true,2023-01-01,9999-12-31,USR-C973E0

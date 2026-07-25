@@ -1,0 +1,5 @@
+company_code,company_name,country_key,local_currency,group_currency,soft_close_working_day,hard_close_target_wd
+NS10,NovaSpace España S.A.,ES,EUR,EUR,4,5
+NS20,NovaSpace France S.A.S.,FR,EUR,EUR,4,5
+NS30,NovaSpace Deutschland GmbH,DE,EUR,EUR,4,5
+NS40,NovaSpace UK Ltd.,GB,GBP,EUR,4,5

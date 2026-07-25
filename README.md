@@ -50,6 +50,7 @@ The `L1 / L2 / L3` split is LSA++ transplanted onto native HANA. [`docs/bw4hana-
 |---|---|
 | [`ROADMAP.md`](ROADMAP.md) | The full build plan, phase by phase, with tick boxes |
 | [`docs/`](docs/) | KPI sheet, data dictionary, BW/4HANA mapping, golden rules, BI roadmap & migration matrix, change-management plan, GDPR note, performance & eco-design report |
+| [`docs/dataset-profile.md`](docs/dataset-profile.md) | Every measured figure the docs quote — generated, never hand-written |
 | [`docs/adr/`](docs/adr/) | Architecture decision records |
 | [`data-generator/`](data-generator/) | Seeded synthetic ERP data generator + sample CSVs + test suite |
 | [`hana/`](hana/) | Calculation-view sources, SQL, HDI artifacts, loader and instance-start scripts |
@@ -67,7 +68,7 @@ Phase order was changed after Phase 0: SAP BTP proved unreachable and the SAC tr
 |---|---|---|
 | 0 | Desktop setup, repo skeleton | ✅ done |
 | 1 | SAP accounts & BTP landscape | ⏭️ dropped — landscape is local ([ADR-002](docs/adr/002-fully-local-landscape.md)) |
-| 2 | Business design & synthetic data | 🔨 in progress |
+| 2 | Business design & synthetic data | ✅ done — 1.12 M lines, 102 tests |
 | 6 | SAC reporting + planning *(moved up — trial clock running)* | ⬜ next |
 | 3 | HANA Express layered modeling | ⬜ not started |
 | 4 | SQLScript pushdown + CAP OData V4 + authored ABAP | ⬜ not started |

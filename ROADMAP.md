@@ -141,8 +141,17 @@ nova-finance-bi/
 
 The order matters: **KPIs before schema, schema before code.** This is exactly the "analyze business requirements and translate them into Digital solutions" bullet.
 
+> ## ✅ COMPLETE
+>
+> `docs/kpi-definitions.md` · `docs/data-dictionary.md` · `docs/dataset-profile.md` (generated) · `data-generator/` with **102 passing tests** at two scales · **1,122,588** journal lines · SAC extracts already shaped and exported.
+>
+> Additions beyond the phase as written:
+> - **`novaspace/harmonise.py`** — the L2 layer written in Python: signed amounts, manual/late flags, and a reference implementation of all eight KPIs. This is the specification the HANA views and the AMDP must reproduce, so "does the SQLScript agree" becomes checkable rather than arguable.
+> - **`profile_dataset.py`** — regenerates every measured figure the documentation quotes. Docs drift from data silently; a generated profile cannot.
+> - **A `--full` test lane.** Two defects passed the fast suite and were caught only at full volume. Bugs whose symptoms scale with volume are invisible to a reduced-scale run by construction.
+
 ## 2.1 Business questions & KPI sheet (2–3 h)
-- [ ] Write `docs/kpi-definitions.md`. For each KPI: name, business question it answers, formula, grain, target/threshold, data source, owner (fictional role). Minimum set:
+- [x] Write `docs/kpi-definitions.md`. For each KPI: name, business question it answers, formula, grain, target/threshold, data source, owner (fictional role). Minimum set:
 
 | KPI | Formula (summary) | Why it matters |
 |---|---|---|
@@ -156,12 +165,12 @@ The order matters: **KPIs before schema, schema before code.** This is exactly t
 | Intercompany mismatches | IC pairs not netting to zero, count & value | The reconciliation grind of every close |
 
 ## 2.2 Dimensional model (2 h)
-- [ ] Design a **star schema** and document it in `docs/data-dictionary.md` (every table, every column, type, description, sample values):
+- [x] Design a **star schema** and document it in `docs/data-dictionary.md` (every table, every column, type, description, sample values):
   - **Dimensions:** `DIM_COMPANY_CODE` (4 entities of the fictional *NovaSpace Group* — ES/FR/DE/UK, each with its local currency), `DIM_COST_CENTER` (~200 centres with a **3-level standard hierarchy** — hierarchies are a BW classic, model them properly), `DIM_PROGRAMME` (8–10 fictional space programmes — satellites, one launcher, ground segment — as WBS-like elements with start/end dates and total budget), `DIM_GL_ACCOUNT` (~150 accounts under a P&L hierarchy: revenue, material, personnel, subcontracting, overhead), `DIM_DATE` (fiscal calendar with periods 1–12 **plus special periods 13–16** for year-end adjustments), `RATES` (monthly FX rates to group currency EUR)
   - **Facts:** `FACT_JOURNAL` — the big one, ≈1M lines, deliberately shaped like S/4HANA's **Universal Journal (ACDOCA)**: document number & type, posting date *and* fiscal period, account, cost centre, programme, debit/credit indicator, amounts in **document, local and group currency**, manual-posting flag, pseudonymised user ID; `FACT_BUDGET` (annual budget per cost centre × account group × programme, with a Version column); `FACT_FORECAST` (quarterly rolling-forecast snapshots); `FACT_CLOSE_TASKS` (entity × period × close task, with due and actual completion timestamps)
 
 ## 2.3 Python data generator (4–6 h)
-- [ ] Write `data-generator/generate.py`. Realism requirements — this is what makes the data feel like a real ERP to someone who lives in one:
+- [x] Write `data-generator/generate.py`. Realism requirements — this is what makes the data feel like a real ERP to someone who lives in one:
   - 4 entities × 3 fiscal years × ~25k journal lines per month → ≈1M lines
   - **Posting-date clustering:** automatic postings (payroll, depreciation, allocations) land punctually and regularly; manual entries spike in the first 3–5 working days after period end — the close crunch — with a tail of genuinely *late* postings
   - One entity is **chronically slow to close** (more manual entries, later postings) — a story the dashboard should reveal, not state
@@ -171,9 +180,9 @@ The order matters: **KPIs before schema, schema before code.** This is exactly t
   - **Special periods 13–14 actually used** for year-end adjustment entries — a small detail that instantly reads as "has done real finance BI"
   - User IDs **pseudonymised at generation time** (GDPR-aware by design — see Phase 8)
   - Deterministic seed (`numpy.random.default_rng(42)`) so everything is reproducible
-- [ ] Output: one CSV per table into `data-generator/output/` (commit only small samples + the script; full CSVs are regenerable).
+- [x] Output: one CSV per table into `data-generator/output/` (commit only small samples + the script; full CSVs are regenerable).
 
-**Deliverables:** KPI sheet, data dictionary, generator script, sample CSVs.
+**Deliverables:** KPI sheet, data dictionary, generator script, sample CSVs. ✅ **All delivered**, plus the dataset profile, the harmonised-layer reference implementation and a 102-test suite.
 
 ---
 # PHASE 3 — SAP HANA Cloud modeling (Weekend 2)

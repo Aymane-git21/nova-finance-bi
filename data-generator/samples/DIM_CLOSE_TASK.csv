@@ -1,0 +1,13 @@
+task_id,task_name,task_sequence,target_working_day,is_milestone
+T01,Sub-ledger cut-off — Accounts Payable,1,1,false
+T02,Sub-ledger cut-off — Accounts Receivable,2,1,false
+T03,GR/IR clearing,3,2,false
+T04,Payroll posting,4,2,false
+T05,Depreciation run,5,2,false
+T06,Accruals posting,6,3,false
+T07,Overhead allocation cycle,7,3,false
+T08,Intercompany reconciliation,8,3,false
+T09,FX revaluation,9,4,false
+T10,Soft close / reporting cut-off,10,4,true
+T11,Management reporting pack,11,5,false
+T12,Hard close / period lock,12,5,true
