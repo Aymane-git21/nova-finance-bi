@@ -1,0 +1,39 @@
+{
+  "name": "novaspace-analytics",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OData V4 analytics service over the NovaSpace HANA model",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@cap-js/hana": "^1",
+    "@sap/cds": "^8",
+    "hdb": "^0.19"
+  },
+  "devDependencies": {
+    "@sap/cds-dk": "^8"
+  },
+  "scripts": {
+    "configure": "python configure.py",
+    "start": "cds-serve",
+    "watch": "cds watch",
+    "snapshot": "node snapshot.js"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "hana",
+        "impl": "@cap-js/hana",
+        "dialect": "hana"
+      }
+    },
+    "sql": {
+      "names": "plain"
+    },
+    "odata": {
+      "version": "v4"
+    }
+  }
+}

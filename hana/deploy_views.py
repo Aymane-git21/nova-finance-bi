@@ -28,7 +28,7 @@ SQL_DIR = HERE / "sql"
 sys.path.insert(0, str(HERE))
 from load_data import connect, read_credentials  # noqa: E402
 
-SCHEMAS = ["NOVASPACE_L1", "NOVASPACE_L2", "NOVASPACE_L3"]
+SCHEMAS = ["NOVASPACE_L1", "NOVASPACE_L2", "NOVASPACE_L3", "NOVASPACE_API"]
 
 
 def split_statements(sql: str) -> list[str]:
@@ -161,7 +161,7 @@ def main(argv: list[str] | None = None) -> int:
     print("\nobjects now present:")
     cursor.execute(
         "SELECT SCHEMA_NAME, COUNT(*) FROM VIEWS "
-        "WHERE SCHEMA_NAME IN ('NOVASPACE_L1','NOVASPACE_L2','NOVASPACE_L3') "
+        "WHERE SCHEMA_NAME LIKE 'NOVASPACE%' "
         "GROUP BY SCHEMA_NAME ORDER BY SCHEMA_NAME"
     )
     for schema, count in cursor.fetchall():
