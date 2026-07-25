@@ -310,7 +310,7 @@ The posting explicitly lists *Eco-design of Digital services* — almost no cand
 - [ ] Apply three optimisations, measuring after each: **(1)** pre-aggregated monthly table (materialisation) for the story-level queries; **(2)** partition/filter pushdown — ensure date filters prune before joins; **(3)** column pruning — remove unused columns from L3 views.
 - [ ] Write `docs/performance-report.md`: before/after table (runtime, records scanned, peak memory if visible), and an **eco-design section**: reduced data scanned per query × query frequency = compute avoided; retention policy proposal (keep line-item grain 24 months, period aggregates beyond — the HANA-native analogue of classic BW cube compression + archiving/NLS); scheduling recommendation (refresh aggregates nightly, not per-query). Frame it as CO₂/cost proxy honestly — order-of-magnitude reasoning, not fake precision.
 
-**Deliverable:** performance & eco-design report with real measured numbers.
+**Deliverable:** performance & eco-design report with real measured numbers. ✅ **Done** — and two of the three planned optimisations turned out to be *wrong*. Partitioning made the target query 20 % slower and cost 23 % memory at this volume; hand-pruning columns made it 15 % slower because the optimiser was already doing it. Both reverted on evidence and reported rather than dropped. The one that worked introduced two correctness defects caught only by the independent Python cross-check.
 
 ---
 

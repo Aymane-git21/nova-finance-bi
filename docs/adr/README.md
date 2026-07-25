@@ -13,6 +13,6 @@ Use [`000-template.md`](000-template.md) as the starting point.
 | [003](003-abap-evidence-strategy.md) | ABAP evidence: executed SQLScript, authored ABAP, CAP service layer | Accepted |
 | [004](004-consumption-layer-without-sac.md) | Consumption layer is Fiori/UI5, not SAC | Accepted |
 | [005](005-published-interface-layer.md) | A published interface layer between the model and its consumers | Accepted |
-| 006 | Materialisation strategy for reporting aggregates | Planned (Phase 7) |
+| [006](006-materialisation-strategy.md) | Materialise the monthly aggregate; do not partition | Accepted |
 
 ADR-001 was superseded within hours of being written. That is not a failure of the record — it is the record working. The decision it documents was sound on its own terms and was defeated by an external access barrier it could not have priced in. Keeping it, rather than editing it away, is what makes the pair readable: 001 shows the reasoning, 002 shows what the world did about it.

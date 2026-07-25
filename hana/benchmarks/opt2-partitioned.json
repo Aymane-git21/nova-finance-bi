@@ -1,0 +1,126 @@
+{
+ "label": "opt2-partitioned",
+ "at": "2026-07-25 22:22 UTC",
+ "repeats": 7,
+ "queries": {
+  "pl_actuals_full": {
+   "cold_ms": 46.5,
+   "warm_ms": 14.9,
+   "warm_min_ms": 14.2,
+   "warm_max_ms": 15.9,
+   "rows": 1176,
+   "server_avg_ms": 11.41,
+   "executions": 7,
+   "result_rows": 8232,
+   "avg_exec_memory_mb": 2.57
+  },
+  "pl_actuals_one_year": {
+   "cold_ms": 33.1,
+   "warm_ms": 8.8,
+   "warm_min_ms": 7.8,
+   "warm_max_ms": 10.9,
+   "rows": 336,
+   "server_avg_ms": 5.77,
+   "executions": 7,
+   "result_rows": 2352,
+   "avg_exec_memory_mb": 0.93
+  },
+  "budget_variance_one_year": {
+   "cold_ms": 443.8,
+   "warm_ms": 260.4,
+   "warm_min_ms": 237.4,
+   "warm_max_ms": 291.2,
+   "rows": 11,
+   "server_avg_ms": 271.38,
+   "executions": 7,
+   "result_rows": 77,
+   "avg_exec_memory_mb": 157.65
+  },
+  "programme_runrate": {
+   "cold_ms": 111.4,
+   "warm_ms": 34.6,
+   "warm_min_ms": 32.6,
+   "warm_max_ms": 52.7,
+   "rows": 10,
+   "server_avg_ms": 36.12,
+   "executions": 7,
+   "result_rows": 70,
+   "avg_exec_memory_mb": 26.88
+  },
+  "close_monitor": {
+   "cold_ms": 43.5,
+   "warm_ms": 3.3,
+   "warm_min_ms": 2.6,
+   "warm_max_ms": 4.9,
+   "rows": 4,
+   "server_avg_ms": 1.78,
+   "executions": 7,
+   "result_rows": 28,
+   "avg_exec_memory_mb": 1.31
+  },
+  "fx_impact": {
+   "cold_ms": 26.4,
+   "warm_ms": 10.0,
+   "warm_min_ms": 9.1,
+   "warm_max_ms": 11.5,
+   "rows": 4,
+   "server_avg_ms": 9.04,
+   "executions": 7,
+   "result_rows": 28,
+   "avg_exec_memory_mb": 7.29
+  }
+ },
+ "memory": {
+  "tables": {
+   "NOVASPACE_L3.AGG_JOURNAL_MONTHLY": {
+    "rows": 0,
+    "mb": 0.12
+   },
+   "NOVASPACE_RAW.DIM_CLOSE_TASK": {
+    "rows": 12,
+    "mb": 0.07
+   },
+   "NOVASPACE_RAW.DIM_COMPANY_CODE": {
+    "rows": 4,
+    "mb": 0.08
+   },
+   "NOVASPACE_RAW.DIM_COST_CENTER": {
+    "rows": 196,
+    "mb": 0.13
+   },
+   "NOVASPACE_RAW.DIM_DATE": {
+    "rows": 1461,
+    "mb": 0.14
+   },
+   "NOVASPACE_RAW.DIM_GL_ACCOUNT": {
+    "rows": 150,
+    "mb": 0.1
+   },
+   "NOVASPACE_RAW.DIM_PROGRAMME": {
+    "rows": 10,
+    "mb": 0.11
+   },
+   "NOVASPACE_RAW.FACT_BUDGET": {
+    "rows": 13161,
+    "mb": 0.41
+   },
+   "NOVASPACE_RAW.FACT_CLOSE_TASKS": {
+    "rows": 2016,
+    "mb": 0.14
+   },
+   "NOVASPACE_RAW.FACT_FORECAST": {
+    "rows": 42912,
+    "mb": 1.2
+   },
+   "NOVASPACE_RAW.FACT_JOURNAL": {
+    "rows": 0,
+    "mb": 0.17
+   },
+   "NOVASPACE_RAW.RATES": {
+    "rows": 288,
+    "mb": 0.12
+   }
+  },
+  "total_mb": 76.03
+ }
+}
