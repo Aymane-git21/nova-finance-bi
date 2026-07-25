@@ -21,26 +21,26 @@
 ```mermaid
 flowchart LR
     GEN["Python data generator<br/>(seeded, ~1M journal lines)"] -->|CSV| HANA
+    GEN -->|curated extracts| SAC["SAC story<br/>+ planning model"]
 
-    subgraph HANA["SAP HANA Cloud (BTP free tier)"]
+    subgraph HANA["SAP HANA, express edition — local Docker, permanent"]
         L1["L1 RAW<br/>inbound 1:1 views"] --> L2["L2 HARMONIZED<br/>joins, FX translation, flags"]
-        L2 --> L3["L3 REPORTING<br/>star-join calculation views"]
+        L2 --> L3["L3 REPORTING<br/>star-join calculation views (HDI)"]
+        TF["Table function: rolling run-rate + EAC<br/>SQLScript, executed &amp; benchmarked"] --> L3
     end
 
-    subgraph ABAP["ABAP Environment"]
-        ZI["ZI_* basic / interface CDS views"] --> ZC["ZC_* consumption views<br/>@Analytics + @UI annotations"]
-        AMDP["AMDP: rolling run-rate + EAC<br/>(SQLScript)"] --> ZC
-        ZC --> SB["Service definition<br/>+ OData V4 binding"]
-    end
-
-    L3 -.->|subset load| ZI
-    SB -->|OData V4| FIORI["Fiori Elements ALP<br/>+ freestyle UI5 chart"]
-    L3 -->|curated CSV extracts| SAC["SAC story + planning model"]
-
+    L3 -->|OData V4| CAP["CAP service layer<br/>(@sap/cds, annotation-driven)"]
+    CAP --> FIORI["Fiori Elements ALP<br/>+ freestyle UI5 chart"]
     FIORI --> PAGES["GitHub Pages demo<br/>(mock-server snapshot)"]
+
+    ABAP["abap/ — ZI_*/ZC_* CDS stack<br/>+ ZCL_AMDP_RUNRATE<br/>authored, NOT activated"] -.->|same SQLScript body| TF
+
+    style ABAP stroke-dasharray: 5 5
 ```
 
 The `L1 / L2 / L3` split is LSA++ transplanted onto native HANA. [`docs/bw4hana-mapping.md`](docs/bw4hana-mapping.md) maps every object to its BW/4HANA equivalent (ADSO, CompositeProvider, DTP, BEx query elements) and records what would differ in a real BW/4 system.
+
+**The landscape is local and permanent — there is no BTP dependency and nothing here expires.** That was not the original plan; see [ADR-002](docs/adr/002-fully-local-landscape.md) for what changed and [ADR-003](docs/adr/003-abap-evidence-strategy.md) for how the ABAP layer is handled honestly.
 
 ---
 
@@ -61,15 +61,17 @@ The `L1 / L2 / L3` split is LSA++ transplanted onto native HANA. [`docs/bw4hana-
 
 ## Build progress
 
+Phase order was changed after Phase 0: SAP BTP proved unreachable and the SAC trial clock had already started, so the landscape moved local ([ADR-002](docs/adr/002-fully-local-landscape.md)) and SAC moved up behind the data generator instead of sitting last-but-one.
+
 | Phase | Scope | Status |
 |---|---|---|
 | 0 | Desktop setup, repo skeleton | ✅ done |
-| 1 | SAP accounts & BTP landscape | ⬜ not started |
-| 2 | Business design & synthetic data | ⬜ not started |
-| 3 | HANA Cloud layered modeling | ⬜ not started |
-| 4 | ABAP + CDS + OData V4 | ⬜ not started |
+| 1 | SAP accounts & BTP landscape | ⏭️ dropped — landscape is local ([ADR-002](docs/adr/002-fully-local-landscape.md)) |
+| 2 | Business design & synthetic data | 🔨 in progress |
+| 6 | SAC reporting + planning *(moved up — trial clock running)* | ⬜ next |
+| 3 | HANA Express layered modeling | ⬜ not started |
+| 4 | SQLScript pushdown + CAP OData V4 + authored ABAP | ⬜ not started |
 | 5 | Fiori / UI5 consumption layer | ⬜ not started |
-| 6 | SAC reporting + planning | ⬜ not started |
 | 7 | Performance & eco-design | ⬜ not started |
 | 8 | Focal-point documentation layer | ⬜ not started |
 | 9 | Packaging & presentation | ⬜ not started |
@@ -80,9 +82,11 @@ The `L1 / L2 / L3` split is LSA++ transplanted onto native HANA. [`docs/bw4hana-
 
 Stated up front rather than glossed over:
 
+- **There is no activated ABAP system.** The ABAP Platform trial needs 100 GB of disk minimum against 62.7 GB available, and SAP BTP was unreachable (see below). So Phase 4 is split by what each layer can honestly claim: the SQLScript pushdown logic is **executed and benchmarked for real** on HANA Express, the ABAP wrapper and CDS stack are **authored but not activated** and labelled as such in every file, and the working OData V4 service that Fiori consumes is **CAP**, never presented as ABAP. Full reasoning in [ADR-003](docs/adr/003-abap-evidence-strategy.md).
+- **SAP BTP was never provisioned.** PAYG registration requires a support ticket; trial registration was blocked by an outage in SAP's phone-verification service. Rather than wait on someone else's queue, the landscape moved local and permanent ([ADR-002](docs/adr/002-fully-local-landscape.md)). The cost is stated plainly: no hands-on evidence of the BTP cockpit, entitlements or Cloud Foundry.
 - **BusinessObjects, Lumira and Analysis for Office cannot be self-hosted for free.** They are covered by professional experience, not by this repository. What the repository does contain is a *migration decision matrix* ([`docs/bi-roadmap.md`](docs/bi-roadmap.md)) showing where each legacy tool fits against SAP's published maintenance timelines.
-- **The SAC trial acquires data by file import only** — no live connection to HANA Cloud. [`sac/live-vs-import.md`](sac/live-vs-import.md) explains why live connectivity wins in production and when import is still the right call.
-- **Free-tier cloud systems expire.** Every artifact that depends on one is captured as source in Git, plus screenshots and video. The Fiori demo is deployed to GitHub Pages against a frozen mock-data snapshot so it stays clickable after the trials die.
+- **The SAC trial acquires data by file import only** — no live connection. [`sac/live-vs-import.md`](sac/live-vs-import.md) explains why live connectivity wins in production and when import is still the right call.
+- **The SAC tenant will expire; nothing else will.** SAC artifacts are captured continuously as screenshots and video. Everything else — HANA Express, the generator, the CAP service, the Fiori demo on GitHub Pages — runs locally and permanently, with no trial clock anywhere in the architecture.
 
 ---
 

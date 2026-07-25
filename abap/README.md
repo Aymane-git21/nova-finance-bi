@@ -1,8 +1,14 @@
-# ABAP / CDS / OData layer
+# ABAP / CDS layer
 
-abapGit-exported sources from the ABAP environment. **Built in Phase 4.**
+> ## ⚠️ NOT ACTIVATED
+>
+> **Every ABAP source in this directory is authored but has never been activated on a running system, and is not claimed to be.** No ABAP system was reachable: SAP BTP was unavailable ([ADR-002](../docs/adr/002-fully-local-landscape.md)) and the ABAP Platform Trial container needs 100 GB of disk against 62.7 GB free. Every file carries the same warning in its header. There are no screenshots here and no claim of a running service.
+>
+> What *is* proven: the SQLScript body inside `ZCL_AMDP_RUNRATE` is deployed to HANA Express as a table function, unit-tested and benchmarked in Phase 7. An AMDP's body is SQLScript and HANA executes it — ABAP is the wrapper. So the pushdown logic is real; the wrapper is source-only. Full reasoning: [ADR-003](../docs/adr/003-abap-evidence-strategy.md).
+>
+> The working OData V4 service that the Fiori app consumes is **CAP**, not this. It lives in [`../cap/`](../cap/) and is never presented as ABAP.
 
-Everything here is exported through abapGit from the first object onward, because trial ABAP systems are periodically reset. The repository is the system of record, not the trial.
+**Built in Phase 4.** Structured as an abapGit export so it activates directly the day a system becomes available.
 
 ## Planned objects
 
@@ -16,4 +22,4 @@ Everything here is exported through abapGit from the first object onward, becaus
 
 ## Environment
 
-The choice between the BTP ABAP Environment trial and a local Docker ABAP Platform trial is recorded in [`../docs/adr/002-abap-environment.md`](../docs/adr/).
+Neither ABAP environment the roadmap anticipated was reachable. The decision on what to build instead, and how to label it honestly, is [ADR-003](../docs/adr/003-abap-evidence-strategy.md).

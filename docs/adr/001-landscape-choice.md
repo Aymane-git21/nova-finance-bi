@@ -1,7 +1,8 @@
 # ADR-001: BTP landscape — Pay-As-You-Go with free-tier plans, not the trial
 
-- **Status:** Accepted
+- **Status:** **Superseded by [ADR-002](002-fully-local-landscape.md)** — SAP BTP proved unreachable in practice. The reasoning below is kept intact because it is still correct on its own terms; what defeated it was an access barrier neither option could clear.
 - **Date:** 2026-07-25
+- **Superseded:** 2026-07-25
 - **Deciders:** Solution architect (project author)
 
 ## Context

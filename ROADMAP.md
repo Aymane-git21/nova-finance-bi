@@ -112,6 +112,16 @@ nova-finance-bi/
 
 # PHASE 1 — Accounts & cloud landscape (1–2 h, plus waiting for e-mails)
 
+> ## ⏭️ DROPPED — 2026-07-25
+>
+> **SAP BTP proved unreachable by both routes.** PAYG registration does not self-serve (SAP directs you to contact support, open-ended wait); trial registration is blocked by an outage in SAP's phone-verification service — not a data-entry or browser problem, both eliminated first.
+>
+> Rather than block the whole build on an external party's uptime for an unbounded period, **the landscape moved local and permanent**: SAP HANA, express edition in Docker. See **[ADR-002](docs/adr/002-fully-local-landscape.md)**. The ABAP consequence is handled separately in **[ADR-003](docs/adr/003-abap-evidence-strategy.md)**.
+>
+> **Also changed: phase order.** The SAC trial was already registered when this was discovered, so its 30-day clock is running. SAC therefore moves up to directly after Phase 2 (it needs data, nothing else), and is extended to ~90 days around day 20. The original ordering existed precisely to avoid this; it is now handled by resequencing instead.
+>
+> Everything below is kept for the record. Only ADR-001 was actually produced.
+
 - [ ] **SAP Universal ID** — register at account.sap.com with a personal e-mail. One ID serves BTP, the SAP Community, tutorials, and later the SAC trial.
 - [ ] **SAP BTP account — use Pay-As-You-Go with free tier plans, not the trial.** Two reasons: (a) the trial's phone-verification service is chronically flaky and blocks registration for days at a time; (b) the trial dies after 90 days, while free tier plans inside a PAYG account have no expiry — so your demo survives the whole job hunt.
   - Sign in with the Universal ID → choose **Pay-As-You-Go** → provide billing info (credit card required even though free tier plans cost €0) → pick an **EU region** (EU10 AWS Frankfurt or EU20 Azure Netherlands) → accept terms. Provisions in minutes.
@@ -168,6 +178,13 @@ The order matters: **KPIs before schema, schema before code.** This is exactly t
 ---
 # PHASE 3 — SAP HANA Cloud modeling (Weekend 2)
 
+> ### 🔄 REVISED — runs on SAP HANA, express edition (local Docker), not HANA Cloud. See [ADR-002](docs/adr/002-fully-local-landscape.md).
+>
+> Same database engine, so 3.2 and 3.3 are unchanged: same column store, same SQLScript, same calculation views, same HDI. Three differences:
+> - **3.1 changes.** No BTP instance to create, no DBADMIN password from a cockpit, and **no nightly stop / 30-day deletion rule** — so `start-instance.sh` and that entire risk-register row disappear. Replaced by a `docker compose` setup and the same `hdbcli` loader.
+> - **No BAS and no XS Advanced** (the full HXE image needs 16–24 GB RAM; this machine has 19.3 GB and also has to run everything else). So no graphical calculation-view editor.
+> - **L3 views are therefore authored as `.hdbcalculationview` design-time artifacts** and deployed with `@sap/hdi-deploy`. This is the fallback the phase already sanctions, and it produces better evidence than the editor would: diffable XML in Git rather than clicks.
+
 ## 3.1 Instance & loading (2 h)
 - [ ] In BTP cockpit: create a **SAP HANA Cloud** instance (smallest trial/free-tier size). Note the admin (DBADMIN) password in your password manager.
 - [ ] **Operational reality — build the habit now:** free tier HANA Cloud instances are **stopped nightly**, and a stopped instance is **deleted after 30 days** unless restarted (alert at 15 days). Restart at the start of every session. Set up the BTP CLI and commit a one-line `hana/start-instance.sh` to the repo — small piece of ops competence, and it saves you from a rebuild.
@@ -188,6 +205,20 @@ Build three layers of **calculation views** in BAS (dev space *SAP HANA Native A
 ---
 
 # PHASE 4 — ABAP + CDS + OData (Weekend 3)
+
+> ### 🔄 REVISED — no ABAP system is reachable. Split by honesty level. See [ADR-003](docs/adr/003-abap-evidence-strategy.md).
+>
+> Option A (BTP ABAP Environment) died with Phase 1. Option B (ABAP Platform Trial in Docker) needs **100 GB disk minimum, 200 GB recommended**; this machine has **62.7 GB free**. Both are out.
+>
+> The phase is therefore rebuilt around what each layer can honestly claim:
+>
+> | Layer | Treatment | Why |
+> |---|---|---|
+> | Run-rate / EAC **SQLScript** | **Executed for real** — deployed to HANA Express as a table function, unit-tested, benchmarked in Phase 7 | An AMDP body *is* SQLScript, and HANA executes it. ABAP is only the wrapper. The most interesting artifact in this phase never needed ABAP to run. |
+> | `ZCL_AMDP_RUNRATE` + `ZI_*` / `ZC_*` CDS stack | **Authored, not activated.** Committed under `abap/`, labelled `NOT ACTIVATED` in every file header. No screenshots, no claims. | Real ABAP, written correctly, ready to activate the day a system exists. Wrapping the identical SQLScript already proven above. |
+> | OData V4 service | **CAP** (`@sap/cds`, local Node) | A genuine annotation-driven OData V4 service that Phase 5's Fiori Elements app consumes for real. Labelled as CAP throughout — never presented as ABAP. |
+>
+> Net effect: Phase 5 stays unblocked, the pushdown logic ends up *more* proven than the original plan (executed and benchmarked, not just activated in a trial that would later be reset), and the gap that remains is stated plainly rather than papered over.
 
 ## 4.1 Choose your ABAP environment (30 min decision, record as ADR)
 - [ ] **Option A (recommended): SAP BTP ABAP Environment trial** — created inside the BTP trial via a booster. Cloud-hosted, nothing to install locally, works with ADT in Eclipse. Caveats: capacity is sometimes exhausted (retry off-peak / other region), and trial systems are periodically reset — keep all code in abapGit from day one.
@@ -219,6 +250,12 @@ Reality check to state in the docs: in a real Airbus landscape, BW/4HANA and the
 ---
 
 # PHASE 6 — SAC sprint (Weekends 4–5, strictly time-boxed)
+
+> ### ⏫ MOVED UP — runs directly after Phase 2. The trial was already registered, so the clock is running.
+>
+> The "only now register" instruction below was overtaken by events: registration happened before Phase 2 was built. Two consequences:
+> - **SAC runs on generator output directly.** 6.1 said to export curated aggregates from HANA; those same aggregates are produced in pandas by the generator instead, at identical numbers from the same seed. This removes HANA from the SAC critical path entirely, so SAC no longer waits on Phase 3.
+> - **Set a calendar reminder for the day-20 extension.** Missing that window drops the tenant from ~90 days to 30. This is the one deadline in the project that cannot be recovered.
 
 **Only now** register the SAC trial: 30 days, and around day 20 you can extend to ~90 total. Trials run on a shared tenant and — critical constraint — **data gets in by file import (CSV/XLSX) or Google Drive only; no live connection to your HANA Cloud**. Your architecture note (below) turns this limitation into interview material.
 
@@ -298,11 +335,12 @@ This phase is why you get *this* job rather than a developer job. Each document 
 
 | Risk | Impact | Mitigation |
 |---|---|---|
-| HANA Cloud free tier instance deleted (nightly stop + 30-day rule) | Lose all modeling | Restart each session via CLI script; 15-day alert email is the safety net; all sources in Git; loader script makes rebuild < 1 h |
-| SAC trial expires mid-build | Lose stories | Register only at Phase 6; extend at day ~20; capture screenshots/video continuously, not at the end |
-| BTP ABAP capacity unavailable / system reset | Delay; lose code | Retry off-peak; abapGit from the first object; Docker fallback documented |
-| BTP trial phone verification broken at signup | Blocks all cloud phases | Avoided entirely by taking the PAYG free-tier route (Phase 1); local fallbacks (HANA express, ABAP Docker, local UI5) keep every phase deliverable |
-| Docker ABAP trial exceeds desktop specs | Phase 4 blocked | Prefer cloud option A; if both fail, deliver CDS design on paper + HANA-side SQLScript equivalents and say so honestly |
+| ~~HANA Cloud free tier instance deleted (nightly stop + 30-day rule)~~ | ~~Lose all modeling~~ | ✅ **Eliminated.** HANA Express is local and permanent — no nightly stop, no deletion rule, no clock. [ADR-002](docs/adr/002-fully-local-landscape.md) |
+| **SAC trial expires mid-build** ⚠️ **LIVE RISK** | Lose stories | ~~Register only at Phase 6~~ — already registered, clock running. Mitigation is now: build Phase 2 first and fast, run Phase 6 immediately after, **extend at day ~20**, capture screenshots/video continuously. This is the only unrecoverable deadline left in the project. |
+| ~~BTP ABAP capacity unavailable / system reset~~ | ~~Delay; lose code~~ | Overtaken: there is no ABAP system at all. Handled by [ADR-003](docs/adr/003-abap-evidence-strategy.md) — SQLScript executed for real, ABAP authored and labelled, CAP for the service layer |
+| ~~BTP trial phone verification broken at signup~~ | ~~Blocks all cloud phases~~ | ❗ **This risk materialised**, and the PAYG route it was supposed to be mitigated by was *also* blocked (support ticket required). Resolved by removing the dependency: fully local landscape, [ADR-002](docs/adr/002-fully-local-landscape.md) |
+| ~~Docker ABAP trial exceeds desktop specs~~ | ~~Phase 4 blocked~~ | ❗ **Also materialised** — 100 GB needed, 62.7 GB free. Resolved as above; the "deliver HANA-side SQLScript equivalents and say so honestly" mitigation is exactly what [ADR-003](docs/adr/003-abap-evidence-strategy.md) does |
+| **Three representations of the model drift apart** (HANA views, CAP CDS, authored ABAP CDS) ⚠️ **NEW** | Inconsistent evidence; an interviewer finds the mismatch before you do | Single source of truth is the data dictionary; the CAP↔ABAP mapping document is the control; the generator's fixed seed means every number in every layer is checkable against the same dataset |
 | Scope creep (adding ML, more dashboards…) | Never finishing | The backlog is the contract: MoSCoW "Won't have this release" section exists precisely for your good ideas |
 | Data resembling any real company's figures or programmes | Credibility/compliance | Fictional group (NovaSpace), invented programme names, seeded generator; README states all data is synthetic and reproducible |
 

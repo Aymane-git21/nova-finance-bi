@@ -8,7 +8,10 @@ Use [`000-template.md`](000-template.md) as the starting point.
 
 | ADR | Decision | Status |
 |---|---|---|
-| [001](001-landscape-choice.md) | BTP landscape: PAYG free-tier vs trial | Proposed (Phase 1) |
-| 002 | ABAP environment: BTP trial vs local Docker | Planned (Phase 4) |
-| 003 | SAC data acquisition: import vs live | Planned (Phase 6) |
-| 004 | Materialisation strategy for reporting aggregates | Planned (Phase 7) |
+| [001](001-landscape-choice.md) | BTP landscape: PAYG free-tier over trial | **Superseded by 002** |
+| [002](002-fully-local-landscape.md) | Fully local landscape: HANA Express, no BTP | Accepted |
+| [003](003-abap-evidence-strategy.md) | ABAP evidence: executed SQLScript, authored ABAP, CAP service layer | Accepted |
+| 004 | SAC data acquisition: import vs live | Planned (Phase 6) |
+| 005 | Materialisation strategy for reporting aggregates | Planned (Phase 7) |
+
+ADR-001 was superseded within hours of being written. That is not a failure of the record — it is the record working. The decision it documents was sound on its own terms and was defeated by an external access barrier it could not have priced in. Keeping it, rather than editing it away, is what makes the pair readable: 001 shows the reasoning, 002 shows what the world did about it.
