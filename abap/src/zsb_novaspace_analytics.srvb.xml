@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  NOT ACTIVATED - no ABAP system was available.
+  See docs/adr/003-abap-evidence-strategy.md
+
+  Service binding: OData V4, UI flavour. V4 rather than V2 deliberately - it is
+  the current protocol, it is what the CAP service actually serves, and the
+  Fiori Elements Analytical List Page needs V4 aggregation ($apply) to work at
+  all.
+
+  abapGit serialises bindings as XML because they are not source-based objects
+  in ADT. Everything in this directory that CAN be source is source.
+-->
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_SRVB" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <SRVB>
+    <HEADER>
+     <SRVDNAME>ZSD_NOVASPACE_ANALYTICS</SRVDNAME>
+     <BINDINGNAME>ZSB_NOVASPACE_ANALYTICS</BINDINGNAME>
+     <BINDINGTYPE>ODATA</BINDINGTYPE>
+     <BINDINGVERSION>V4</BINDINGVERSION>
+     <BINDINGCATEGORY>UI</BINDINGCATEGORY>
+     <RELEASESTATE>NOT_RELEASED</RELEASESTATE>
+    </HEADER>
+    <SERVICES>
+     <SERVICE>
+      <SRVDNAME>ZSD_NOVASPACE_ANALYTICS</SRVDNAME>
+      <SERVICEVERSION>0001</SERVICEVERSION>
+     </SERVICE>
+    </SERVICES>
+   </SRVB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

@@ -1,0 +1,20 @@
+// ===========================================================================
+// NOT ACTIVATED - no ABAP system was available. See docs/adr/003-abap-evidence-strategy.md
+// ===========================================================================
+// Service definition: what the OData service exposes.
+//
+// A service definition names the entities; the binding (zsb_*) decides the
+// protocol and version. Splitting them is the point - the same definition can
+// be bound as OData V2 and V4 without touching the model, which is how you
+// add a V4 binding for a new Fiori app without disturbing V2 consumers.
+// ===========================================================================
+
+@EndUserText.label: 'NovaSpace analytics'
+@ObjectModel.leadingEntity.name: 'ZC_BudgetVariance'
+define service ZSD_NOVASPACE_ANALYTICS {
+  expose ZC_BudgetVariance    as BudgetVariance;
+  expose ZC_ProgrammeRunRate  as ProgrammeRunRate;
+  expose ZI_Programme         as Programme;
+  expose ZI_CostCenter        as CostCenter;
+  expose ZI_GLAccount         as GLAccount;
+}
