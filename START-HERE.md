@@ -117,10 +117,35 @@ Now the good one:
 
 5. Add another chart. Type: **Line**.
    - **Measure**: `amount_group_currency`
-   - **Dimension** (the x-axis): `period_date`
+   - **Dimension** (the x-axis): **`fiscal_period_label`** — *not* `period_date`, see below
    - **Colour / series**: `pl_section`
 
-You should get cost and revenue over three and a half years. **If the x-axis is a mess or the periods are out of order, the `period_date` column wasn't set as a Date in step A2** — go back and fix it.
+You should get separate lines for revenue and each cost category across three and a half years.
+
+> ### ⚠️ Use `fiscal_period_label` on chart axes, not `period_date`
+>
+> `period_date` is a **Date** dimension, and SAC date dimensions have a built-in
+> hierarchy: All → Year → Quarter → Month. Dropped straight onto an axis it
+> defaults to the **top** of that hierarchy, so every period collapses into a
+> single bar labelled `(all)`. It looks broken and the data is perfectly fine.
+>
+> `fiscal_period_label` is plain text — `2023-01`, `2023-02` — with no hierarchy
+> to fight, and it is zero-padded so it sorts correctly. It exists in the
+> extracts for precisely this.
+>
+> **Keep `period_date` in the model.** It is what gives you time filters,
+> year-over-year and period ranges later. It is just an awkward first axis.
+
+> ### ⚠️ A negative total is correct, not a bug
+>
+> The grand total across everything is **−126,774,552.51**. Revenue is stored
+> as a negative number and costs as positive — the standard sign convention,
+> applied once in the model so nothing downstream has to re-derive it. So the
+> total is €3,295 m of revenue against €3,168 m of cost: the group's profit
+> over three and a half years.
+>
+> This is also why a chart of *everything* is unhelpful. Split by `pl_section`,
+> or filter to `COST_OF_SALES`, and it becomes readable immediately.
 
 - [ ] Trend chart works
 - [ ] **Screenshot both** → save into `sac/screenshots/`
