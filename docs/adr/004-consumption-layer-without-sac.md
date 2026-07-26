@@ -1,6 +1,6 @@
 # ADR-004: The consumption layer is Fiori/UI5, not SAP Analytics Cloud
 
-- **Status:** Accepted
+- **Status:** Accepted; **partially revisited 2026-07-26** — see the note at the end
 - **Date:** 2026-07-25
 - **Related:** [ADR-002](002-fully-local-landscape.md), [ADR-003](003-abap-evidence-strategy.md)
 - **Deciders:** Solution architect (project author)
@@ -43,3 +43,15 @@ The SAC and BPC requirements are addressed in [`../sac-and-bpc.md`](../sac-and-b
 **On the pattern.** Three constraint records in one project could read as a list of excuses. The guard against that is that each one is paired with something that was actually delivered and verified, and that the repository leads with the built and tested work rather than with what blocked it. A reader who only looks at outcomes sees a loaded database, a verified view stack and a hosted demo; the constraint records explain the shape of what they are looking at, and are deliberately short.
 
 **Revisit if.** SAC returns and more than three weeks remain on the trial. The curated extracts in [`../../sac/extracts/`](../../sac/extracts/) are already built and unchanged, so the reporting story remains roughly a weekend's work whenever the tenant is reachable.
+
+---
+
+## Revisit note — 2026-07-26
+
+**The tenant came back on day 1 of the trial, so the condition above is met with 29 days on the base clock and 89 if extended.** The SAC work proceeds.
+
+What this does *not* change: the decision itself stands. The Fiori/UI5 dashboard remains the headline artifact, because the reason for choosing it was never that SAC was unavailable — it was that a hosted static page cannot expire and an SAC trial always will. SAC is now an addition, not a replacement.
+
+What it does change: the "not demonstrated" verdicts in [`../sac-and-bpc.md`](../sac-and-bpc.md) and the requirements table in the README become wrong once the story is built, and both are flagged for rewrite in [`../../sac/build-guide.md`](../../sac/build-guide.md). They stay as they are until there are screenshots to back the change — a requirements table updated on the strength of an intention is exactly the kind of claim this project has avoided.
+
+Excel and planning write-back **stay cut**. SAC returning does not create time, and the reasoning in this ADR about three unfinished artifacts is unaffected.

@@ -21,6 +21,41 @@ from .calendar_ import WorkingDays
 from .plan import signed_amount
 
 
+def add_period_date(frame: pd.DataFrame) -> pd.DataFrame:
+    """Add the columns SAC needs to build a real Date dimension.
+
+    Fiscal year and period as two integers is enough to group by and useless
+    to a time axis. SAC infers a Date dimension from an actual date column, and
+    without one the model has no time hierarchy, no year-over-year, no
+    period-range filter and no meaningful trend - the periods sort as text and
+    "12" lands between "11" and "2".
+
+    ``period_date`` is the first day of the fiscal period, which SAC maps to
+    Month granularity. ``fiscal_period_label`` is the human-readable form for
+    axis labels, and it is zero-padded so it sorts correctly even where it is
+    treated as a string.
+
+    Fiscal year equals calendar year here (variant K4), so the mapping is
+    direct. A non-calendar fiscal year variant would need the offset applied
+    here rather than in SAC, because SAC's date dimension is calendar-based.
+    """
+    result = frame.copy()
+    period = result["fiscal_period"].clip(upper=12)
+    result.insert(
+        result.columns.get_loc("fiscal_period") + 1,
+        "period_date",
+        pd.to_datetime(
+            dict(year=result["fiscal_year"], month=period, day=1)
+        ).dt.strftime("%Y-%m-%d"),
+    )
+    result.insert(
+        result.columns.get_loc("period_date") + 1,
+        "fiscal_period_label",
+        result["fiscal_year"].astype(str) + "-" + period.astype(str).str.zfill(2),
+    )
+    return result
+
+
 def pl_actuals(
     journal: pd.DataFrame,
     dim_company: pd.DataFrame,
@@ -55,7 +90,7 @@ def pl_actuals(
     names = dim_company.set_index("company_code")["company_name"]
     grouped.insert(1, "company_name", grouped["company_code"].map(names))
     grouped["amount_group_currency"] = grouped["amount_group_currency"].round(2)
-    return grouped
+    return add_period_date(grouped)
 
 
 def programme_costs(
@@ -85,7 +120,7 @@ def programme_costs(
     grouped.insert(1, "programme_name", grouped["programme_id"].map(programmes["programme_name"]))
     grouped.insert(2, "programme_type", grouped["programme_id"].map(programmes["programme_type"]))
     grouped["total_budget_eur"] = grouped["programme_id"].map(programmes["total_budget_eur"])
-    return grouped
+    return add_period_date(grouped)
 
 
 def close_tasks(
@@ -117,12 +152,12 @@ def close_tasks(
     frame["days_to_close"] = days
     frame["is_period_open"] = frame["actual_completion_date"].isna()
 
-    return frame[[
+    return add_period_date(frame[[
         "close_task_id", "company_code", "company_name", "fiscal_year", "fiscal_period",
         "task_id", "task_name", "task_sequence", "target_working_day",
         "period_end_date", "due_date", "actual_completion_date",
         "delay_working_days", "days_to_close", "is_period_open",
-    ]]
+    ]])
 
 
 def budget_actual(
@@ -205,4 +240,4 @@ def budget_actual(
         [actual_rows[columns], budget_rows[columns], forecast_rows[columns]],
         ignore_index=True,
     )
-    return stacked.rename(columns={"programme_key": "programme_id"})
+    return add_period_date(stacked.rename(columns={"programme_key": "programme_id"}))
