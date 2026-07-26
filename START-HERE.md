@@ -82,7 +82,7 @@ C:\Users\ayman\Desktop\nova-finance-bi\sac\extracts\
 |---|---|---|
 | `company_code` | Dimension | |
 | `company_name` | Dimension | |
-| `fiscal_year` | **Dimension** | ⚠️ SAC will guess Measure. Change it |
+| `fiscal_year` | **Dimension** | ⚠️ SAC will guess Measure. Change it — see the modeller notes below |
 | `fiscal_period` | **Dimension** | ⚠️ Same |
 | `period_date` | **Date** | ⚠️ Most important. Granularity **Month**. Without this you get no time axis |
 | `fiscal_period_label` | Dimension | |
@@ -152,6 +152,43 @@ You should get separate lines for revenue and each cost category across three an
 
 **Stop here if you're short on time.** One model and two charts already means you've used SAC. Everything after this makes it better, not real.
 
+---
+
+## ⚙️ How the modeller screen actually works
+
+You will hit this on every model, so it is worth reading once.
+
+After importing, SAC shows a **Dataset Overview** with two lists:
+
+```
+Measures (6)                 <- things it will ADD UP
+  fiscal_year        SUM
+  fiscal_period      SUM
+  ...
+Dimensions (11)              <- things you slice BY
+  company_code
+  period_date
+  ...
+```
+
+**SAC sorts every column into one of those two lists by guessing, and it guesses
+from the data type.** Anything numeric lands in Measures. That is wrong for any
+number that is really a label — a year, a period, a sequence number, a target.
+
+Two things you will do repeatedly:
+
+| To do this | Do this |
+|---|---|
+| **Change how a measure aggregates** (SUM → AVERAGE) | Click the measure. A panel opens on the right. Find **Aggregation** and change it |
+| **Move a column from Measures to Dimensions** | Click the row's `⋮` menu, or right-click it, and look for **Change to Dimension**. Some SAC versions put it as a *Type* dropdown in the panel instead |
+
+**The rule for deciding:** would adding two of these together mean anything?
+`amount = 100 + 200 = 300` ✅ measure.
+`fiscal_year = 2023 + 2024 = 4047` ❌ dimension.
+
+If a column is in the wrong list your charts still render — they just show
+nonsense, and nothing warns you. This screen is where model quality is decided.
+
 ## A4. The other two analytic models (45 min)
 
 Same flow as A2. Two files:
@@ -165,11 +202,25 @@ Same column rules, plus one trap:
 
 **`sac_close_tasks.csv`** → name it `NS_Close_Monitor`
 
-Two traps here:
+This one needs the most fixing, because six columns are numeric and only two of
+them are real measures. After import SAC will show **Measures (6)**. Correct it to:
 
-> `days_to_close` — aggregation **AVERAGE**, not SUM. Adding up "days to close" across periods is meaningless.
->
-> `actual_completion_date` — **one row is blank. Leave it blank.** If SAC offers to fill empty values with 0, say no. That period is genuinely still open, and showing it as a zero-day close would be the most misleading number in the whole project.
+| Column | SAC guesses | Set it to | Why |
+|---|---|---|---|
+| `days_to_close` | Measure, SUM | **Measure, AVERAGE** | Summing days-to-close over 42 periods gives 340 days |
+| `delay_working_days` | Measure, SUM | **Measure, AVERAGE** | Same |
+| `fiscal_year` | Measure | **Dimension** | 2023 + 2024 = 4047 |
+| `fiscal_period` | Measure | **Dimension** | A label, not a quantity |
+| `task_sequence` | Measure | **Dimension** | The task's position, 1–12 |
+| `target_working_day` | Measure | **Dimension** | A target, not a total |
+
+**End state: Measures (2), Dimensions (15).** If you still have six measures,
+the model is wrong and every chart built on it will be too.
+
+> `actual_completion_date` — **one row is blank. Leave it blank.** If SAC offers
+> to fill empty values with 0, say no. That period is genuinely still open, and
+> showing it as a zero-day close would be the most misleading number in the
+> whole project.
 
 - [ ] `NS_Programme_Costs` created
 - [ ] `NS_Close_Monitor` created
