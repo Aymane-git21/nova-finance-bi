@@ -6,6 +6,8 @@
 
 No login, no backend, nothing to start. It opens.
 
+> **Working on this repo?** [`START-HERE.md`](START-HERE.md) is the current to-do list.
+
 ---
 
 ## The question
